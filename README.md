@@ -1,0 +1,1 @@
+# sqad-activite-rating-
