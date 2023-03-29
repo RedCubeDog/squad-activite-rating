@@ -1,13 +1,12 @@
 package ru.redcube.squadrating.services;
 
 
-
 import ru.redcube.squadrating.entity.Work;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class AbstractWorkService implements WorkService{
+public abstract class AbstractWorkService implements WorkService {
 
     protected List<Work> works;
 
@@ -17,7 +16,7 @@ public class AbstractWorkService implements WorkService{
 
     public Work getWorkById(Long id) {
         List<Work> found =
-                works.stream().filter (work -> work.getId() == id) .collect(Collectors.toList());
+                works.stream().filter(work -> work.getId() == id).collect(Collectors.toList());
         return found.size() == 0 ? null : found.stream().findFirst().get();
     }
 

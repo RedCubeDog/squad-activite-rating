@@ -1,8 +1,8 @@
 package ru.redcube.squadrating.entity;
 
-public class SocialWork extends AbstractWork{
+public class SocialWork extends AbstractWork {
 
-    public SocialWork(){
+    public SocialWork() {
         id = 2L;
         title = "Walk with dogs";
     }

@@ -8,9 +8,9 @@ import ru.redcube.squadrating.entity.SocialWork;
 import java.util.ArrayList;
 
 @Service
-public class HardWorkService extends AbstractWorkService{
+public class HardWorkService extends AbstractWorkService {
 
-    public HardWorkService(){
+    public HardWorkService() {
 
         works = new ArrayList<>();
         works.add(new HardWork());

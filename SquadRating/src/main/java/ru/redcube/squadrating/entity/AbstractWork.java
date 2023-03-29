@@ -1,6 +1,6 @@
 package ru.redcube.squadrating.entity;
 
-public class AbstractWork implements Work{
+public abstract class AbstractWork implements Work {
     protected Long id;
     protected String title;
 

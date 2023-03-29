@@ -12,16 +12,17 @@ import java.util.List;
 
 @Controller
 public class WorkController {
+
     private final WorkService workService;
 
     @Autowired
     public WorkController(WorkService workService) {
         this.workService = workService;
     }
+
     @GetMapping(value = "/works")
     @ResponseBody
-    public List<Work> getWorks(){
-     return workService.getWorks();
+    public List<Work> getWorks() {
+        return workService.getWorks();
     }
-
 }
