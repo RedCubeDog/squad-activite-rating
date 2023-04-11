@@ -1,4 +1,4 @@
-package ru.redcube.squadrating.entity;
+package ru.redcube.squadrating.entity.user;
 
 public enum UserState {
     BASIC_STATE,

@@ -1,7 +1,11 @@
-package ru.redcube.squadrating.entity;
+package ru.redcube.squadrating.entity.user;
 
 import jakarta.persistence.*;
 import lombok.*;
+import ru.redcube.squadrating.entity.work.HardWork;
+import ru.redcube.squadrating.entity.work.SocialWork;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -27,4 +31,9 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserState state;
 
+    @ManyToMany(mappedBy = "users")
+    private List<HardWork> hardWorks;
+
+    @ManyToMany(mappedBy = "users")
+    private List<SocialWork> socialWorks;
 }
