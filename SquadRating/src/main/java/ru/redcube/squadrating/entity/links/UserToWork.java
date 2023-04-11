@@ -1,10 +1,10 @@
-package ru.redcube.squadrating.entity;
+package ru.redcube.squadrating.entity.links;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "user_to_work")
-public class UserToWork {
+@MappedSuperclass
+public abstract class UserToWork {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
