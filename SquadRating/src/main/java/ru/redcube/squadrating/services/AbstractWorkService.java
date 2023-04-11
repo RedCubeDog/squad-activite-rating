@@ -1,7 +1,7 @@
 package ru.redcube.squadrating.services;
 
 
-import ru.redcube.squadrating.entity.Work;
+import ru.redcube.squadrating.entity.work.Work;
 
 import java.util.List;
 import java.util.stream.Collectors;
