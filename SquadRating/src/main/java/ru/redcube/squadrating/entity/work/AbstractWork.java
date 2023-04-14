@@ -1,10 +1,15 @@
 package ru.redcube.squadrating.entity.work;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.Date;
 
-@Entity
+@Getter
+@Setter
+@EqualsAndHashCode(exclude = "id")
+@NoArgsConstructor
+@AllArgsConstructor
 @MappedSuperclass
 public abstract class AbstractWork implements Work {
 
@@ -24,49 +29,4 @@ public abstract class AbstractWork implements Work {
     @Column(name = "coefficient")
     private Integer coefficient;
 
-    public AbstractWork() {
-    }
-
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Override
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    @Override
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public Integer getCoefficient() {
-        return coefficient;
-    }
-
-    public void setCoefficient(Integer coefficient) {
-        this.coefficient = coefficient;
-    }
 }

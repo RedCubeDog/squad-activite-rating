@@ -20,17 +20,6 @@ public class SquadImpl implements Squad{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @OneToMany
-    @Column(name = "squad_id")
+    @OneToMany(mappedBy = "squadId", cascade = CascadeType.ALL)
     private List<User> users;
 }

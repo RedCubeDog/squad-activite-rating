@@ -2,6 +2,7 @@ package ru.redcube.squadrating.entity.user;
 
 import jakarta.persistence.*;
 import lombok.*;
+import ru.redcube.squadrating.entity.squad.SquadImpl;
 import ru.redcube.squadrating.entity.work.HardWork;
 import ru.redcube.squadrating.entity.work.SocialWork;
 
@@ -14,13 +15,15 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "user")
+@Table(name = "app_user")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String squadId;
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.REFRESH, CascadeType.MERGE})
+    @JoinColumn(name = "squad_id")
+    private SquadImpl squadId;
     private String firstName;
     private String lastName;
     private String patronymic;

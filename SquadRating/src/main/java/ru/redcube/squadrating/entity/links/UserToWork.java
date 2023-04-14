@@ -1,8 +1,13 @@
 package ru.redcube.squadrating.entity.links;
 
 import jakarta.persistence.*;
+import lombok.*;
 
-@Entity
+@Getter
+@Setter
+@EqualsAndHashCode(exclude = "id")
+@NoArgsConstructor
+@AllArgsConstructor
 @MappedSuperclass
 public abstract class UserToWork {
 
@@ -16,30 +21,4 @@ public abstract class UserToWork {
     @Column(name = "user_id")
     private Long userId;
 
-    public UserToWork() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Long getWorkId() {
-        return workId;
-    }
-
-    public void setWorkId(Long workId) {
-        this.workId = workId;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
 }
