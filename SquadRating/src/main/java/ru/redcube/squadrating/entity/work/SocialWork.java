@@ -9,11 +9,6 @@ import java.util.List;
 @Table(name = "social_work")
 public class SocialWork extends AbstractWork {
 
-    public SocialWork() {
-        id = 2L;
-        title = "Walk with dogs";
-    }
-
     @ManyToMany
     @JoinTable(
             name = "user_to_social_work",
