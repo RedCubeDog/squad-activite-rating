@@ -13,7 +13,7 @@ public abstract class UserToWork {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(name = "work_id")
     private Long workId;
