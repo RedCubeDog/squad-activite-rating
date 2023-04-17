@@ -9,11 +9,6 @@ import java.util.List;
 @Table(name = "hard_work")
 public class HardWork extends AbstractWork {
 
-    public HardWork() {
-        id = 1L;
-        title = "Transferring chairs";
-    }
-
     @ManyToMany
     @JoinTable(
             name = "user_to_hard_work",
