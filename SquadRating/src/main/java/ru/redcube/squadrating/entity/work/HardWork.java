@@ -1,7 +1,7 @@
 package ru.redcube.squadrating.entity.work;
 
 import jakarta.persistence.*;
-import ru.redcube.squadrating.entity.user.User;
+import ru.redcube.squadrating.entity.user.AppUser;
 
 import java.util.List;
 
@@ -15,5 +15,5 @@ public class HardWork extends AbstractWork {
             joinColumns = @JoinColumn(name = "work_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    private List<User> users;
+    private List<AppUser> users;
 }
