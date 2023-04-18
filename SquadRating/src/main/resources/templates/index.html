@@ -3,6 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Приветственная страница</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%
+        }
+        th, td {
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
 <h1>Добро пожаловать!</h1>
@@ -25,7 +34,7 @@
     </thead>
     <tbody>
     <tr th:each="user : ${users}">
-        <td th:text="${user.squadId}"></td>
+        <td th:text="${user.squadId.getId()}"></td>
         <td th:text="${user.firstName}"></td>
         <td th:text="${user.lastName}"></td>
         <td th:text="${user.patronymic}"></td>

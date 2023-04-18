@@ -8,10 +8,12 @@ import ru.redcube.squadrating.entity.work.SocialWork;
 
 
 import java.util.List;
+
 @Service
 public class SocialWorkService {
 
     private final SocialWorkDAO socialWorkDAO;
+
     @Autowired
     public SocialWorkService(SocialWorkDAO socialWorkDAO) {
         this.socialWorkDAO = socialWorkDAO;

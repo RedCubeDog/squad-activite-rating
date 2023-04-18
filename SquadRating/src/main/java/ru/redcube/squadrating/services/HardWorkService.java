@@ -10,6 +10,7 @@ import java.util.List;
 @Service
 public class HardWorkService {
     private final HardWorkDAO hardWorkDAO;
+
     @Autowired
     public HardWorkService(HardWorkDAO hardWorkDAO) {
         this.hardWorkDAO = hardWorkDAO;

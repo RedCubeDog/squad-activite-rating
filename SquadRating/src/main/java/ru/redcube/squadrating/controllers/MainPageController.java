@@ -16,6 +16,7 @@ public class MainPageController {
     private final SquadService squadService;
     private final SocialWorkService socialWorkService;
     private final HardWorkService hardWorkService;
+
     @Autowired
     public MainPageController(UserService userService, SquadService squadService,
                               SocialWorkService socialWorkService, HardWorkService hardWorkService) {
@@ -34,8 +35,8 @@ public class MainPageController {
 
     @GetMapping("/works")
     public String getSocialWorkPage(Model model) {
-        model.addAttribute("socialWorks",socialWorkService.getSocialWorks());
-        model.addAttribute("hardWorks",hardWorkService.getHardWorks());
+        model.addAttribute("socialWorks", socialWorkService.getSocialWorks());
+        model.addAttribute("hardWorks", hardWorkService.getHardWorks());
 
         return "/works";
     }

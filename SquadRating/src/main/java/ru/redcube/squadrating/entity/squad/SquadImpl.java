@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "squad")
-public class SquadImpl implements Squad{
+public class SquadImpl implements Squad {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
