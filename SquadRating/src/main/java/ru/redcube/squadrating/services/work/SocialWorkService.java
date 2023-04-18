@@ -1,4 +1,4 @@
-package ru.redcube.squadrating.services;
+package ru.redcube.squadrating.services.work;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

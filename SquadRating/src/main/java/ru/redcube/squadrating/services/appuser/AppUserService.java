@@ -1,4 +1,4 @@
-package ru.redcube.squadrating.services;
+package ru.redcube.squadrating.services.appuser;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,12 +8,12 @@ import ru.redcube.squadrating.entity.user.AppUser;
 import java.util.List;
 
 @Service
-public class UserService {
+public class AppUserService {
 
     private final AppUserRepository appUserRepository;
 
     @Autowired
-    public UserService(AppUserRepository appUserRepository) {
+    public AppUserService(AppUserRepository appUserRepository) {
         this.appUserRepository = appUserRepository;
     }
 

@@ -1,4 +1,4 @@
-package ru.redcube.squadrating.services;
+package ru.redcube.squadrating.services.links;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package ru.redcube.squadrating.services;
+package ru.redcube.squadrating.services.squad;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
