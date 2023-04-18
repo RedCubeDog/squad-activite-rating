@@ -3,7 +3,7 @@ package ru.redcube.squadrating.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.redcube.squadrating.dao.UserDAO;
-import ru.redcube.squadrating.entity.user.User;
+import ru.redcube.squadrating.entity.user.AppUser;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public class UserService {
         this.userDAO = userDAO;
     }
 
-    public List<User> getUsers() {
+    public List<AppUser> getUsers() {
         return userDAO.findAll();
     }
 }
