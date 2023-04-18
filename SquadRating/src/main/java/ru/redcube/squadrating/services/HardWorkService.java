@@ -2,7 +2,7 @@ package ru.redcube.squadrating.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.redcube.squadrating.repositories.HardWorkRepository;
+import ru.redcube.squadrating.repositories.work.HardWorkRepository;
 import ru.redcube.squadrating.entity.work.HardWork;
 
 import java.util.List;

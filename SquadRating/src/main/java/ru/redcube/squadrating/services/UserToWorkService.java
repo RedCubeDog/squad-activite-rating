@@ -2,11 +2,10 @@ package ru.redcube.squadrating.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.redcube.squadrating.dao.UserToHardWorkDAO;
-import ru.redcube.squadrating.dao.UserToSocialWorkDAO;
 import ru.redcube.squadrating.entity.links.UserToHardWork;
 import ru.redcube.squadrating.entity.links.UserToSocialWork;
-import ru.redcube.squadrating.entity.work.HardWork;
+import ru.redcube.squadrating.repositories.links.UserToHardWorkDAO;
+import ru.redcube.squadrating.repositories.links.UserToSocialWorkDAO;
 
 import java.util.List;
 
