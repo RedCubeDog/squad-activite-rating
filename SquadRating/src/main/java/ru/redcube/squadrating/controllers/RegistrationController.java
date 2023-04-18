@@ -27,7 +27,7 @@ public class RegistrationController {
     public String addUser(User user, Model model) {
         try {
             userService.addUser(user);
-            return "redirect:/login";
+            return "redirect:/";
         } catch (Exception ex) {
             model.addAttribute("message", "User exists");
             return "registration";

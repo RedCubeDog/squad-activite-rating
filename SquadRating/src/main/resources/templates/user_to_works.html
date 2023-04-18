@@ -8,58 +8,58 @@
             border-collapse: collapse;
             width: 100%
         }
+
         th, td {
             border: 1px solid black;
         }
     </style>
 </head>
 <body>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <table>
+                <caption>Посещение социальных отработок</caption>
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>work_id</th>
+                    <th>user_id</th>
 
-    </table>
-        <table>
-            <tbody>
-            <tr>
-                <td>
-                    <table>
-                        <caption>Посещение социальных отработок</caption>
-                        <thead>
-                        <tr>
-                            <th>id</th>
-                            <th>work_id</th>
-                            <th>user_id</th>
-
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="work : ${userToSocialWork}">
-                            <td th:text="${work.id}"></td>
-                            <td th:text="${work.workId}"></td>
-                            <td th:text="${work.userId}"></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </td>
-                <td>
-                    <table>
-                        <caption>Посещение разных отработок</caption>
-                        <thead>
-                        <tr>
-                            <th>id</th>
-                            <th>work_id</th>
-                            <th>user_id</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="work : ${userToHardWork}">
-                            <td th:text="${work.id}"></td>
-                            <td th:text="${work.workId}"></td>
-                            <td th:text="${work.userId}"></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="work : ${userToSocialWork}">
+                    <td th:text="${work.id}"></td>
+                    <td th:text="${work.workId}"></td>
+                    <td th:text="${work.userId}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+            <table>
+                <caption>Посещение разных отработок</caption>
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>work_id</th>
+                    <th>user_id</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="work : ${userToHardWork}">
+                    <td th:text="${work.id}"></td>
+                    <td th:text="${work.workId}"></td>
+                    <td th:text="${work.userId}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
 </body>
+<a th:href="@{/mainPage}">Вернуться на главную страницу.</a>
 </html>

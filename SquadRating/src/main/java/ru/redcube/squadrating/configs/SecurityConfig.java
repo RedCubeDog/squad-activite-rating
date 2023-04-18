@@ -32,7 +32,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests()
-                .requestMatchers("/registration", "/login").permitAll()
+                .requestMatchers("/registration", "/login", "/").permitAll()
                 .requestMatchers("/delete/**").hasRole("ADMIN")
                 .requestMatchers("/create/**").hasAuthority("CREATOR")
                 .anyRequest().authenticated()
