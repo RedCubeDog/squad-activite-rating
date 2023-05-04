@@ -14,11 +14,4 @@ public abstract class UserToWork {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "work_id")
-    private Long workId;
-
-    @Column(name = "user_id")
-    private Long userId;
-
 }
