@@ -23,7 +23,7 @@ public abstract class AbstractWork implements Work {
     @Column(name = "description")
     protected String description;
 
-    @Column(name = "date", columnDefinition = "date NOT NULL")
+    @Column(name = "date")
     private Date date;
 
     @Column(name = "coefficient")
