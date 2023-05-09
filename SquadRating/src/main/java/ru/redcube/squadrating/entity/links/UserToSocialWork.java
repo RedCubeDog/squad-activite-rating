@@ -7,6 +7,7 @@ import jakarta.persistence.Table;
 import lombok.*;
 import ru.redcube.squadrating.entity.user.AppUser;
 import ru.redcube.squadrating.entity.work.HardWork;
+import ru.redcube.squadrating.entity.work.SocialWork;
 
 @Getter
 @Setter
@@ -20,7 +21,7 @@ public class UserToSocialWork extends UserToWork {
 
     @ManyToOne
     @JoinColumn(name = "work_id")
-    private HardWork work;
+    private SocialWork work;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
