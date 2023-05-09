@@ -2,7 +2,9 @@ package ru.redcube.squadrating.entity.work;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Getter
@@ -24,7 +26,7 @@ public abstract class AbstractWork implements Work {
     protected String description;
 
     @Column(name = "date")
-    private Date date;
+    private LocalDateTime date;
 
     @Column(name = "coefficient")
     private Integer coefficient;
