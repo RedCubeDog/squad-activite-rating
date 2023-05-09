@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Работы</title>
@@ -23,36 +23,65 @@
                 <caption>Посещение социальных отработок</caption>
                 <thead>
                 <tr>
-                    <th>id</th>
-                    <th>work_id</th>
-                    <th>user_id</th>
-
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Coefficient</th>
+                    <th>Date</th>
+                    <th>Time of work</th>
+                    <th>Description</th>
+                    <th>FirstName</th>
+                    <th>Lastname</th>
+                    <th>Patronymic</th>
+                    <th>state</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="work : ${userToSocialWork}">
                     <td th:text="${work.id}"></td>
-                    <td th:text="${work.workId}"></td>
-                    <td th:text="${work.userId}"></td>
+                    <td th:text="${work.getWork().getTitle()}"></td>
+                    <td th:text="${work.getWork().getCoefficient()}"></td>
+                    <td th:text="${work.getWork().getDate()}"></td>
+                    <td th:text="${work.getTimeOfWork()}"></td>
+                    <td th:text="${work.getWork().getDescription()}"></td>
+                    <td th:text="${work.getUser().getFirstName()}"></td>
+                    <td th:text="${work.getUser().getLastName()}"></td>
+                    <td th:text="${work.getUser().getPatronymic()}"></td>
+                    <td th:text="${work.getUser().getState()}"></td>
                 </tr>
                 </tbody>
             </table>
         </td>
+    </tr>
+    <tr>
         <td>
             <table>
                 <caption>Посещение разных отработок</caption>
                 <thead>
                 <tr>
-                    <th>id</th>
-                    <th>work_id</th>
-                    <th>user_id</th>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Coefficient</th>
+                    <th>Date</th>
+                    <th>Time of work</th>
+                    <th>Description</th>
+                    <th>FirstName</th>
+                    <th>Lastname</th>
+                    <th>Patronymic</th>
+                    <th>state</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="work : ${userToHardWork}">
                     <td th:text="${work.id}"></td>
-                    <td th:text="${work.workId}"></td>
-                    <td th:text="${work.userId}"></td>
+                    <td th:text="${work.getWork().getTitle()}"></td>
+                    <td th:text="${work.getWork().getCoefficient()}"></td>
+                    <td th:text="${work.getWork().getDate()}"></td>
+                    <td th:text="${work.getTimeOfWork()}"></td>
+                    <td th:text="${work.getWork().getDescription()}"></td>
+                    <td th:text="${work.getUser().getFirstName()}"></td>
+                    <td th:text="${work.getUser().getLastName()}"></td>
+                    <td th:text="${work.getUser().getPatronymic()}"></td>
+                    <td th:text="${work.getUser().getState()}"></td>
                 </tr>
                 </tbody>
             </table>

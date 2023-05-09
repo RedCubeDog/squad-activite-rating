@@ -3,6 +3,8 @@ package ru.redcube.squadrating.entity.links;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.sql.Time;
+
 @Getter
 @Setter
 @EqualsAndHashCode(exclude = "id")
@@ -15,10 +17,5 @@ public abstract class UserToWork {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "work_id")
-    private Long workId;
-
-    @Column(name = "user_id")
-    private Long userId;
-
+    private Time timeOfWork;
 }
