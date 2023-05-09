@@ -3,8 +3,6 @@ package ru.redcube.squadrating.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.redcube.squadrating.entity.work.HardWork;
 import ru.redcube.squadrating.services.work.SocialWorkService;
@@ -31,10 +29,7 @@ public class WorksController {
     }
 
     @PostMapping("/addNewWork")
-    public String addNewWork(HardWork hardWork, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return "add-work";
-        }
+    public String addNewWork(HardWork hardWork, Model model) {
 
         hardWorkService.saveWork(hardWork);
 
