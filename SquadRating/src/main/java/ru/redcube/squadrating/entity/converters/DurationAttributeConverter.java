@@ -10,8 +10,7 @@ public class DurationAttributeConverter implements AttributeConverter<Duration, 
 
     public static String getFormattedTimeWork(Duration timeWork) {
         return timeWork.getSeconds() / 3600 + "Ч: "
-                + timeWork.getSeconds() % 3600 / 60 + "М: "
-                + timeWork.getSeconds() % 60 + "С";
+                + timeWork.getSeconds() % 3600 / 60 + "М";
     }
 
     @Override
@@ -26,9 +25,8 @@ public class DurationAttributeConverter implements AttributeConverter<Duration, 
         long absSeconds = Math.abs(seconds);
         int hours = (int) (absSeconds / 3600);
         int minutes = (int) ((absSeconds % 3600) / 60);
-        int remainingSeconds = (int) (absSeconds % 60);
 
-        String result = String.format("%s%d:%02d:%02d", negative ? "-" : "", hours, minutes, remainingSeconds);
+        String result = String.format("%s%d:%02d", negative ? "-" : "", hours, minutes);
         if (nanos > 0) {
             result += String.format(".%09d", nanos);
         }
@@ -51,9 +49,8 @@ public class DurationAttributeConverter implements AttributeConverter<Duration, 
         String[] timeParts = timePart.split(":");
         int hours = Integer.parseInt(timeParts[0]);
         int minutes = Integer.parseInt(timeParts[1]);
-        int seconds = Integer.parseInt(timeParts[2]);
 
-        long totalSeconds = hours * 3600L + minutes * 60L + seconds;
+        long totalSeconds = hours * 3600L + minutes * 60L;
         long nanos = 0;
         if (parts.length > 1) {
             String nanosPart = parts[1];
