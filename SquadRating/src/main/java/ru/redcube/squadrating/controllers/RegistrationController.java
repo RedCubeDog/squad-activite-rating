@@ -15,13 +15,11 @@ import ru.redcube.squadrating.services.config.UserService;
 public class RegistrationController {
 
     private final UserService userService;
-    private final AppUserService appUserService;
 
     @Autowired
     public RegistrationController(UserService userService,
                                   AppUserService appUserService) {
         this.userService = userService;
-        this.appUserService = appUserService;
     }
 
     @GetMapping("/registration")
@@ -41,9 +39,9 @@ public class RegistrationController {
             securityUser.setSquadUser(squadUser);
             squadUser.setSecurityUser(securityUser);
             userService.addUser(securityUser);
-            appUserService.addUser(squadUser);
             return "redirect:/";
         } catch (Exception ex) {
+            model.addAttribute("registrationForm", registrationForm);
             model.addAttribute("message", "User exists");
             return "registration";
         }

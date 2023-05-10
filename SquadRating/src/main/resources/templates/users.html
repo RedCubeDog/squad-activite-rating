@@ -25,18 +25,18 @@
         <th>patronymic</th>
         <th>email</th>
         <th>squadRole</th>
-        <th>state</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="user : ${users}">
-        <td th:text="${user.squadId.getId()}"></td>
+        <td th:text="${user.squadId != null}
+                    ? ${user.squadId.getId()}
+                    : 'без отряда'"></td>
         <td th:text="${user.firstName}"></td>
         <td th:text="${user.lastName}"></td>
         <td th:text="${user.patronymic}"></td>
         <td th:text="${user.email}"></td>
         <td th:text="${user.squadRole}"></td>
-        <td th:text="${user.state}"></td>
     </tr>
     </tbody>
 </table>

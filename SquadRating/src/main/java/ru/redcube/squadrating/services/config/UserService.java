@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ru.redcube.squadrating.configs.entities.User;
+import ru.redcube.squadrating.entity.user.SquadRole;
 import ru.redcube.squadrating.repositories.config.UserRepository;
 
 import java.util.Collections;
@@ -45,7 +46,8 @@ public class UserService implements UserDetailsService {
         if (userFromDb != null) {
             throw new Exception("user exists");
         }
-        user.setRoles(Collections.singleton(Role.USER));
+        user.getSquadUser().setSquadRole(SquadRole.CANDIDATE);
+        user.setRoles(Collections.singleton(Role.BASIC_STATE));
         user.setActive(true);
         userRepository.save(user);
     }

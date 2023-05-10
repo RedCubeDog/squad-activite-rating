@@ -31,8 +31,6 @@ public class SquadUser {
     private String email;
     @Enumerated(EnumType.STRING)
     private SquadRole squadRole;
-    @Enumerated(EnumType.STRING)
-    private UserState state;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "security_id")
     private User securityUser;

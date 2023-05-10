@@ -11,13 +11,13 @@ values ('user1', '123', TRUE),
        ('user5', '123', TRUE),
        ('user6', '123', TRUE);
 
-insert into squad_user (email, first_name, last_name, patronymic, squad_role, state, squad_id, security_id)
-values ('test_email1@email.com', 'firstname1', 'last_name1', 'patronymic1', 'CANDIDATE', 'BASIC_STATE', 1, 1),
-       ('test_email2@email.com', 'firstname2', 'last_name2', 'patronymic2', 'CANDIDATE', 'BASIC_STATE', 1, 2),
-       ('test_email3@email.com', 'firstname3', 'last_name3', 'patronymic3', 'CANDIDATE', 'BASIC_STATE', 2, 3),
-       ('test_email4@email.com', 'firstname4', 'last_name4', 'patronymic4', 'CANDIDATE', 'BASIC_STATE', 2, 4),
-       ('test_email5@email.com', 'firstname5', 'last_name5', 'patronymic5', 'CANDIDATE', 'BASIC_STATE', 3, 5),
-       ('test_email6@email.com', 'firstname6', 'last_name6', 'patronymic6', 'CANDIDATE', 'BASIC_STATE', 3, 6);
+insert into squad_user (email, first_name, last_name, patronymic, squad_role, squad_id, security_id)
+values ('test_email1@email.com', 'firstname1', 'last_name1', 'patronymic1', 'CANDIDATE', 1, 1),
+       ('test_email2@email.com', 'firstname2', 'last_name2', 'patronymic2', 'CANDIDATE', 1, 2),
+       ('test_email3@email.com', 'firstname3', 'last_name3', 'patronymic3', 'CANDIDATE', 2, 3),
+       ('test_email4@email.com', 'firstname4', 'last_name4', 'patronymic4', 'CANDIDATE', 2, 4),
+       ('test_email5@email.com', 'firstname5', 'last_name5', 'patronymic5', 'CANDIDATE', 3, 5),
+       ('test_email6@email.com', 'firstname6', 'last_name6', 'patronymic6', 'CANDIDATE', 3, 6);
 
 -- INSERT INTO user_role (user_id, roles)
 -- VALUES (1, 'USER'),

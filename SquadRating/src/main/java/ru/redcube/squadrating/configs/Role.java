@@ -1,6 +1,6 @@
 package ru.redcube.squadrating.configs;
 
 public enum Role {
-    USER,
-    ADMIN
+    BASIC_STATE,
+    ADMINISTRATION_STATE
 }
