@@ -2,35 +2,45 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Пользователи</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%
+        }
+
+        th, td {
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
 <a th:text="'Все пользователи:'"></a>
 <table>
-  <thead>
-  <tr>
-    <th>squadId</th>
-    <th>firstName</th>
-    <th>lastName</th>
-    <th>patronymic</th>
-    <th>login</th>
-    <th>email</th>
-    <th>squadRole</th>
-    <th>state</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr th:each="user : ${users}">
-    <td th:text="${user.squadId.getId()}"></td>
-    <td th:text="${user.firstName}"></td>
-    <td th:text="${user.lastName}"></td>
-    <td th:text="${user.patronymic}"></td>
-    <td th:text="${user.login}"></td>
-    <td th:text="${user.email}"></td>
-    <td th:text="${user.squadRole}"></td>
-    <td th:text="${user.state}"></td>
-  </tr>
-  </tbody>
+    <thead>
+    <tr>
+        <th>squadId</th>
+        <th>firstName</th>
+        <th>lastName</th>
+        <th>patronymic</th>
+        <th>login</th>
+        <th>email</th>
+        <th>squadRole</th>
+        <th>state</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.squadId.getId()}"></td>
+        <td th:text="${user.firstName}"></td>
+        <td th:text="${user.lastName}"></td>
+        <td th:text="${user.patronymic}"></td>
+        <td th:text="${user.login}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.squadRole}"></td>
+        <td th:text="${user.state}"></td>
+    </tr>
+    </tbody>
 </table>
 <a th:href="@{/mainPage}">Вернуться на главную страницу.</a>
 </body>

@@ -3,15 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Приветственная страница</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%
-        }
-        th, td {
-            border: 1px solid black;
-        }
-    </style>
 </head>
 <body>
 <h1>Добро пожаловать!</h1>
@@ -19,6 +10,7 @@
 <a th:href="@{/users}">Посмотреть всех пользователей.</a>
 <a th:href="@{/works}">Посмотреть все работы.</a>
 <a th:href="@{/userToWorks}">Посмотреть все отработки.</a>
+<a th:href="@{/squadWorks}">Посмотреть отработки отрядов.</a>
 <a th:href="@{/logout}">Разлогиниться</a>
 </body>
 </html>
