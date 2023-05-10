@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ru.redcube.squadrating.configs.User;
+import ru.redcube.squadrating.configs.entities.User;
 import ru.redcube.squadrating.repositories.config.UserRepository;
 
 import java.util.Collections;

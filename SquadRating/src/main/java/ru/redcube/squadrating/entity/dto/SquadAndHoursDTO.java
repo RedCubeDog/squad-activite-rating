@@ -1,7 +1,6 @@
 package ru.redcube.squadrating.entity.dto;
 
 import lombok.*;
-import org.springframework.stereotype.Component;
 import ru.redcube.squadrating.entity.converters.DurationAttributeConverter;
 import ru.redcube.squadrating.entity.links.UserToHardWork;
 import ru.redcube.squadrating.entity.links.UserToSocialWork;
@@ -17,7 +16,6 @@ import java.util.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Component("squadAndHours")
 public class SquadAndHoursDTO {
 
     private String squadName;

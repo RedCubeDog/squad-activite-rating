@@ -5,6 +5,7 @@ import lombok.*;
 import ru.redcube.squadrating.entity.squad.SquadImpl;
 import ru.redcube.squadrating.entity.work.HardWork;
 import ru.redcube.squadrating.entity.work.SocialWork;
+import ru.redcube.squadrating.configs.entities.User;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "app_user")
+@Table(name = "squad_user")
 public class SquadUser {
 
     @Id
@@ -27,12 +28,14 @@ public class SquadUser {
     private String firstName;
     private String lastName;
     private String patronymic;
-    private String login;
     private String email;
     @Enumerated(EnumType.STRING)
     private SquadRole squadRole;
     @Enumerated(EnumType.STRING)
     private UserState state;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "security_id")
+    private User securityUser;
 
     @ManyToMany(mappedBy = "users")
     private List<HardWork> hardWorks;
