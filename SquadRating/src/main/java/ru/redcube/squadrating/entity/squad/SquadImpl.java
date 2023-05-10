@@ -2,7 +2,7 @@ package ru.redcube.squadrating.entity.squad;
 
 import jakarta.persistence.*;
 import lombok.*;
-import ru.redcube.squadrating.entity.user.AppUser;
+import ru.redcube.squadrating.entity.user.SquadUser;
 
 import java.util.List;
 
@@ -22,5 +22,5 @@ public class SquadImpl implements Squad {
     private Long id;
     private String name;
     @OneToMany(mappedBy = "squadId", cascade = CascadeType.ALL)
-    private List<AppUser> users;
+    private List<SquadUser> users;
 }

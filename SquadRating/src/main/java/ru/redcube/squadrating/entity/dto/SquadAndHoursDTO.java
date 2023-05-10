@@ -7,7 +7,7 @@ import ru.redcube.squadrating.entity.links.UserToHardWork;
 import ru.redcube.squadrating.entity.links.UserToSocialWork;
 import ru.redcube.squadrating.entity.links.UserToWork;
 import ru.redcube.squadrating.entity.squad.SquadImpl;
-import ru.redcube.squadrating.entity.user.AppUser;
+import ru.redcube.squadrating.entity.user.SquadUser;
 
 import java.time.Duration;
 import java.util.*;
@@ -36,7 +36,7 @@ public class SquadAndHoursDTO {
             List<? extends UserToWork> usersAndHardWorks) {
         Map<SquadImpl, Duration> squadAndWorkingHours = new HashMap<>();
         for (UserToWork userToWork : usersAndHardWorks) {
-            AppUser user;
+            SquadUser user;
             if (userToWork instanceof UserToHardWork) {
                 user = ((UserToHardWork) userToWork).getUser();
             } else {
