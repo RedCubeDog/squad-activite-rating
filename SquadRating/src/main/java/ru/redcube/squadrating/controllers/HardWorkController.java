@@ -2,9 +2,13 @@ package ru.redcube.squadrating.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.redcube.squadrating.entity.links.UserToHardWork;
 import ru.redcube.squadrating.entity.work.HardWork;
+import ru.redcube.squadrating.services.appuser.AppUserService;
+import ru.redcube.squadrating.services.links.UserToWorkService;
 import ru.redcube.squadrating.services.work.WorkService;
 
 import java.util.Optional;
@@ -14,11 +18,15 @@ public class HardWorkController {
 
 
     private final WorkService<HardWork> hardWorkService;
+    private final AppUserService appUserService;
+    private final UserToWorkService userToWorkService;
 
     @Autowired
-    public HardWorkController(WorkService<HardWork> hardWorkService) {
+    public HardWorkController(WorkService<HardWork> hardWorkService, AppUserService appUserService, UserToWorkService userToWorkService) {
 
         this.hardWorkService = hardWorkService;
+        this.appUserService = appUserService;
+        this.userToWorkService = userToWorkService;
     }
 
     /**
@@ -70,7 +78,7 @@ public class HardWorkController {
      * @param hardWorkId ID работы
      * @return Страница для обновления работы
      */
-    @GetMapping ("/hardWork/{id}/update")
+    @GetMapping("/hardWork/{id}/update")
     public String updateHardWork(@PathVariable("id") Long hardWorkId, Model model) {
         //TODO добавить ролевую модель
         Optional<HardWork> hardWorkOptional = hardWorkService.getWorkById(hardWorkId);
@@ -89,12 +97,12 @@ public class HardWorkController {
      *
      * @param hardWorkId ID работы
      * @param hardWork   работы
-     * @return Страница обновленной работы
+     * @return Переход на страницу с работами
      */
     @PostMapping("/hardWork/{id}/update")
     public String updateHardWork(@PathVariable("id") Long hardWorkId, HardWork hardWork) {
         //TODO добавить обработку ошибок
-        hardWorkService.updateWork(hardWork,hardWorkId);
+        hardWorkService.updateWork(hardWork, hardWorkId);
         return "redirect:/hardWorks";
     }
 
@@ -117,5 +125,40 @@ public class HardWorkController {
         }
 
         return "/hardWork/delete";
+    }
+
+    /**
+     * Страница работы
+     *
+     * @param model      Модель для работы
+     * @param hardWorkId Id работы
+     * @return Страница работы
+     */
+    @Transactional
+    @GetMapping(value = "/hardWork/{id}")
+    public String getWorkById(Model model, @PathVariable("id") Long hardWorkId) {
+        Optional<HardWork> hardWorkOptional = hardWorkService.getWorkById(hardWorkId);
+        if (hardWorkOptional.isPresent()) {
+            HardWork hardWork = hardWorkOptional.get();
+            model.addAttribute("hardWork", hardWork);
+            model.addAttribute("appUsers", appUserService.getAllUsers());
+            model.addAttribute("userToHardWorks", new UserToHardWork());
+        } else {
+            return "/error/page";
+        }
+        return "/hardWork/detail";
+    }
+
+    /**
+     * Добавление AppUser к работе, из деталей работы
+     *
+     * @param hardWorkId Id работы
+     * @return Переход на страницу с работами
+     */
+    @PostMapping("/hardWork/{id}")
+    public String createUserToWork(UserToHardWork userToHardWork, @PathVariable("id") Long hardWorkId) {
+        userToHardWork.setWork(hardWorkService.getWorkById(hardWorkId).get());
+        userToWorkService.saveUserToHardWork(userToHardWork);
+        return "redirect:/hardWorks";
     }
 }
