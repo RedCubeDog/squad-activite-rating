@@ -19,13 +19,18 @@ values ('test_email1@email.com', 'firstname1', 'last_name1', 'patronymic1', 'CAN
        ('test_email5@email.com', 'firstname5', 'last_name5', 'patronymic5', 'CANDIDATE', 3, 5),
        ('test_email6@email.com', 'firstname6', 'last_name6', 'patronymic6', 'CANDIDATE', 3, 6);
 
--- INSERT INTO user_role (user_id, roles)
--- VALUES (1, 'USER'),
---        (2, 'USER'),
---        (3, 'USER'),
---        (4, 'USER'),
---        (5, 'USER'),
---        (6, 'USER');
+insert into role (name)
+values ('BASIC_STATE'),
+       ('ADMINISTRATION_STATE');
+
+
+INSERT INTO user_to_role (user_id, role_id)
+VALUES (1, 1),
+       (2, 1),
+       (3, 1),
+       (4, 1),
+       (5, 2),
+       (6, 2);
 
 insert into hard_work (title, description, date, coefficient)
 values ('HardWork1', 'make something 1', '2022-09-19', 1),

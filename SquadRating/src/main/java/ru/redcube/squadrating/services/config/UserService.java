@@ -11,8 +11,9 @@ import org.springframework.stereotype.Service;
 import ru.redcube.squadrating.configs.entities.User;
 import ru.redcube.squadrating.entity.user.SquadRole;
 import ru.redcube.squadrating.repositories.config.UserRepository;
+import ru.redcube.squadrating.repositories.roles.RoleRepository;
 
-import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -21,23 +22,26 @@ import java.util.stream.Collectors;
 public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, RoleRepository roleRepository) {
         this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User myUser = userRepository.findByUsername(username);
-        return new org.springframework.security.core.userdetails
+        var user1 = new org.springframework.security.core.userdetails
                 .User(myUser.getUsername(), myUser.getPassword(),
-                mapRolesToAthorities(myUser.getRoles()));
+                mapRolesToAuthorities(myUser.getRoles()));
+        return user1;
     }
 
-    private List<? extends GrantedAuthority> mapRolesToAthorities(Set<Role> roles) {
+    private List<? extends GrantedAuthority> mapRolesToAuthorities(Set<Role> roles) {
         return roles.stream()
-                .map(r -> new SimpleGrantedAuthority("ROLE " + r.name()))
+                .map(r -> new SimpleGrantedAuthority("ROLE " + r.getName()))
                 .collect(Collectors.toList());
     }
 
@@ -47,7 +51,8 @@ public class UserService implements UserDetailsService {
             throw new Exception("user exists");
         }
         user.getSquadUser().setSquadRole(SquadRole.CANDIDATE);
-        user.setRoles(Collections.singleton(Role.BASIC_STATE));
+        Role role = roleRepository.getRoleByName("BASIC_STATE");
+        user.setRoles(new HashSet<>(List.of(role)));
         user.setActive(true);
         userRepository.save(user);
     }

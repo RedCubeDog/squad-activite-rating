@@ -35,9 +35,15 @@ public class SquadUser {
     @JoinColumn(name = "security_id")
     private User securityUser;
 
-    @ManyToMany(mappedBy = "users")
+    @ManyToMany(mappedBy = "users",
+            cascade = {CascadeType.PERSIST, CascadeType.DETACH,
+                    CascadeType.REFRESH, CascadeType.MERGE},
+            fetch = FetchType.EAGER)
     private List<HardWork> hardWorks;
 
-    @ManyToMany(mappedBy = "users")
+    @ManyToMany(mappedBy = "users",
+            cascade = {CascadeType.PERSIST, CascadeType.DETACH,
+                    CascadeType.REFRESH, CascadeType.MERGE},
+            fetch = FetchType.EAGER)
     private List<SocialWork> socialWorks;
 }
