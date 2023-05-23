@@ -1,14 +1,13 @@
 package ru.redcube.squadrating.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import ru.redcube.squadrating.services.work.HardWorkService;
-import ru.redcube.squadrating.services.work.SocialWorkService;
 import ru.redcube.squadrating.services.squad.SquadService;
 import ru.redcube.squadrating.services.squadUser.SquadUserService;
+import ru.redcube.squadrating.services.work.HardWorkService;
+import ru.redcube.squadrating.services.work.SocialWorkService;
 
 @Controller
 public class MainPageController {
@@ -41,7 +40,6 @@ public class MainPageController {
     }
 
     @GetMapping("/works")
-    @PreAuthorize("hasAnyAuthority('ROLE_BASIC_STATE')")
     public String getSocialWorkPage(Model model) {
         model.addAttribute("socialWorks", socialWorkService.getSocialWorks());
         model.addAttribute("hardWorks", hardWorkService.getHardWorks());
