@@ -2,8 +2,10 @@ package ru.redcube.squadrating.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.redcube.squadrating.entity.links.UserToHardWork;
 import ru.redcube.squadrating.entity.work.HardWork;
 import ru.redcube.squadrating.services.appuser.AppUserService;
 import ru.redcube.squadrating.services.links.UserToWorkService;
@@ -124,4 +126,25 @@ public class HardWorkController {
 
         return "/hardWork/delete";
     }
+
+    /**
+     * Страница работы
+     *
+     * @param model      Модель для работы
+     * @param hardWorkId Id работы
+     * @return Страница работы
+     */
+    @Transactional
+    @GetMapping(value = "/hardWork/{id}")
+    public String getWorkById(Model model, @PathVariable("id") Long hardWorkId) {
+        Optional<HardWork> hardWorkOptional = hardWorkService.getWorkById(hardWorkId);
+        if (hardWorkOptional.isPresent()) {
+            HardWork hardWork = hardWorkOptional.get();
+            model.addAttribute("hardWork", hardWork);
+        } else {
+            return "/error/page";
+        }
+        return "/hardWork/detail";
+    }
+
 }

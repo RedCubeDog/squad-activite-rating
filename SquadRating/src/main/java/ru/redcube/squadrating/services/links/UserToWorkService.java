@@ -30,6 +30,36 @@ public class UserToWorkService {
     public List<UserToHardWork> getUserToHardWorks() {
         return userToHardWorkDAO.findAll();
     }
+    @Transactional
+    public Optional<UserToHardWork> getUserToHardWorkById(Long id) {
+        return userToHardWorkDAO.findById(id);
+    }
+    @Transactional
+    public void saveUserToHardWork(UserToHardWork userToHardWork) {
+        userToHardWorkDAO.save(userToHardWork);
+    }
+
+    @Transactional
+    public void deleteUserToHardWork(Long id) {
+        userToHardWorkDAO.deleteById(id);
+    }
+
+    public void saveUserToSocialWork(UserToSocialWork userToSocialWork) {
+        userToSocialWorkDAO.save(userToSocialWork);
+    }
+
+    @Transactional
+    public void updateUserToHardWork(UserToHardWork userToHardWork, Long id) {
+        Optional<UserToHardWork> userToHardWorkOptional = userToHardWorkDAO.findById(id);
+
+        if (userToHardWorkOptional.isPresent()) {
+            UserToHardWork userToHardWorkEntity = userToHardWorkOptional.get();
+            userToHardWorkEntity.setWork(userToHardWork.getWork());
+            userToHardWorkEntity.setTimeOfWork(userToHardWork.getTimeOfWork());
+            userToHardWorkEntity.setUser(userToHardWork.getUser());
+        }
+    }
+
 
     @Transactional
     public Optional<UserToHardWork> getUserToHardWorkById(Long id) {
