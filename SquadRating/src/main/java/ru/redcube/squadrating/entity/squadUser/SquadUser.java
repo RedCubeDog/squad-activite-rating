@@ -1,4 +1,4 @@
-package ru.redcube.squadrating.entity.user;
+package ru.redcube.squadrating.entity.squadUser;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -8,15 +8,12 @@ import ru.redcube.squadrating.entity.work.SocialWork;
 
 import java.util.List;
 
-@Getter
-@Setter
-@EqualsAndHashCode(exclude = "id")
-@Builder
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "app_user")
-public class AppUser {
+@Table(name = "squad_user")
+public class SquadUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +29,7 @@ public class AppUser {
     @Enumerated(EnumType.STRING)
     private SquadRole squadRole;
     @Enumerated(EnumType.STRING)
-    private UserState state;
+    private SquadUserState state;
 
     @ManyToMany(mappedBy = "users")
     private List<HardWork> hardWorks;

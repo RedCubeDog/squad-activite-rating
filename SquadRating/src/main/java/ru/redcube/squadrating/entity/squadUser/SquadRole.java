@@ -1,4 +1,4 @@
-package ru.redcube.squadrating.entity.user;
+package ru.redcube.squadrating.entity.squadUser;
 
 public enum SquadRole {
     CANDIDATE,
