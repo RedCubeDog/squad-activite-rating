@@ -29,6 +29,7 @@
         <th>description</th>
         <th>date</th>
         <th>coefficient</th>
+        <th>Detail</th>
         <th>Edit</th>
         <th>Delete</th>
     </tr>
@@ -40,6 +41,7 @@
         <td th:text="${socialWork.description}"></td>
         <td th:text="${socialWork.date}"></td>
         <td th:text="${socialWork.coefficient}"></td>
+        <td><a th:href="@{/socialWork/{id}(id=${socialWork.id})}">Detail</a></td>
         <td><a th:href="@{/socialWork/{id}/update(id=${socialWork.id})}">Edit</a></td>
         <td><a th:href="@{/socialWork/{id}/delete(id=${socialWork.id})}">Delete</a></td>
     </tr>

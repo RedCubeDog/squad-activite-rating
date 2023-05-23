@@ -1,6 +1,5 @@
 package ru.redcube.squadrating.services.work;
 
-import com.sun.management.GarbageCollectionNotificationInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

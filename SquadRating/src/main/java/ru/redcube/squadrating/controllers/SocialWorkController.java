@@ -2,11 +2,13 @@ package ru.redcube.squadrating.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.redcube.squadrating.entity.work.HardWork;
+import ru.redcube.squadrating.entity.links.UserToSocialWork;
 import ru.redcube.squadrating.entity.work.SocialWork;
-import ru.redcube.squadrating.entity.work.Work;
+import ru.redcube.squadrating.services.appuser.AppUserService;
+import ru.redcube.squadrating.services.links.UserToWorkService;
 import ru.redcube.squadrating.services.work.WorkService;
 
 import java.util.Optional;
@@ -16,11 +18,15 @@ public class SocialWorkController {
 
 
     private final WorkService<SocialWork> socialWorkService;
+    private final AppUserService appUserService;
+    private final UserToWorkService userToWorkService;
 
     @Autowired
-    public SocialWorkController(WorkService<SocialWork> socialWorkService) {
+    public SocialWorkController(WorkService<SocialWork> socialWorkService, AppUserService appUserService, UserToWorkService userToWorkService) {
 
         this.socialWorkService = socialWorkService;
+        this.appUserService = appUserService;
+        this.userToWorkService = userToWorkService;
     }
 
     /**
@@ -119,5 +125,40 @@ public class SocialWorkController {
         }
 
         return "/socialWork/delete";
+    }
+
+    /**
+     * Страница работы
+     *
+     * @param model      Модель для работы
+     * @param socialWorkId Id работы
+     * @return Страница работы
+     */
+    @Transactional
+    @GetMapping(value = "/socialWork/{id}")
+    public String getWorkById(Model model, @PathVariable("id") Long socialWorkId) {
+        Optional<SocialWork> socialWorkOptional = socialWorkService.getWorkById(socialWorkId);
+        if (socialWorkOptional.isPresent()) {
+            SocialWork socialWork = socialWorkOptional.get();
+            model.addAttribute("socialWork", socialWork);
+            model.addAttribute("appUsers", appUserService.getAllUsers());
+            model.addAttribute("userToSocialWork", new UserToSocialWork());
+        } else {
+            return "/error/page";
+        }
+        return "/socialWork/detail";
+    }
+
+    /**
+     * Добавление AppUser к работе, из деталей работы
+     *
+     * @param socialWorkId Id работы
+     * @return Переход на страницу с работами
+     */
+    @PostMapping("/socialWork/{id}")
+    public String createUserToWork(UserToSocialWork userToSocialWork, @PathVariable("id") Long socialWorkId) {
+        userToSocialWork.setWork(socialWorkService.getWorkById(socialWorkId).get());
+        userToWorkService.saveUserToSocialWork(userToSocialWork);
+        return "redirect:/socialWorks";
     }
 }

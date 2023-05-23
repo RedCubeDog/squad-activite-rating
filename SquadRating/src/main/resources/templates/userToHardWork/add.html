@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#" th:action="@{/userToHardWork/create}" th:object="${userToHardWork}" method="post">
+    <table>
+        <tr>
+            <th>Work</th>
+            <th>AppUser</th>
+            <th>Время</th>
+        </tr>
+        <tbody>
+        <tr>
+            <td>
+                <select th:field="*{work.id}">
+                    <option th:each="work : ${works}"
+                            th:value="${work.id}"
+                            th:text="${work.title} +' описание: '+ ${work.description}">
+                    </option>
+                </select>
+            </td>
+            <td>
+                <select th:field="*{user.id}">
+                    <option th:each="user : ${appUsers}"
+                            th:value="${user.id}"
+                            th:text="${user.firstName} +' '+ ${user.squadId.name}">
+                    </option>
+                </select>
+            </td>
+            <td>
+                <input type="datetime-local" th:field="*{timeOfWork}" id="time" placeholder="Time">
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div>
+        <input type="submit" class="btn btn-secondary" value="Добавить"/>
+        <a class="ml-4" th:href="@{/userToWorks}">Отмена</a>
+    </div>
+</form>
+</body>
+</html>
