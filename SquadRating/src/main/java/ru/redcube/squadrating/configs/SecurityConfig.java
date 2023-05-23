@@ -25,16 +25,22 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.csrf().disable()
+        http
                 .authorizeHttpRequests()
-                .requestMatchers("/login", "/registration", "/").permitAll()
-                .and()
-                .authorizeHttpRequests()
-                .requestMatchers("/**").authenticated()
+                .requestMatchers("/registration", "/login", "/")
+                .permitAll()
+                .requestMatchers("/users/**", "/works/**")
+                .hasAnyAuthority("ROLE_BASIC_STATE")
+                .requestMatchers("/userToWorks/**")
+                .hasAnyAuthority("ROLE_ADMINISTRATION_STATE")
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
+                .permitAll()
                 .and()
-                .build();
+                .logout()
+                .permitAll();
+        return http.build();
     }
 
     @Bean
