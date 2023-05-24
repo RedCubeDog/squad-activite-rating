@@ -14,7 +14,7 @@
     </style>
 </head>
 <body>
-<form action="#" th:action="@{/socialWork/{id}(id=${socialWork.id})}" th:object="${userToSocialWork}"
+<form action="#" th:action="@{/socialWork/{id}(id=${socialWork.id})}"
       method="post">
     <table>
         <tr>
@@ -22,8 +22,6 @@
             <th>Description</th>
             <th>Date</th>
             <th>Coefficient</th>
-            <th>User</th>
-            <th>TimeOfWork</th>
         </tr>
         <tbody>
         <tr>
@@ -31,25 +29,10 @@
             <td th:text="${socialWork.description}"></td>
             <td th:text="${socialWork.date}"></td>
             <td th:text="${socialWork.coefficient}"></td>
-
-            <td>
-                <select th:field="*{user.id}">
-                    <option th:each="user : ${appUsers}"
-                            th:value="${user.id}"
-                            th:text="${user.firstName}">
-                    </option>
-                </select>
-            </td>
-            <td>
-                <input type="datetime-local" th:field="*{timeOfWork}" id="time" placeholder="Time">
-            </td>
         </tr>
-        <tr>
 
-        </tr>
         </tbody>
     </table>
-    <input type="submit" value="Добавить"/>
     <div>
         <a th:href="@{/socialWorks}">Назад</a> <br>
     </div>

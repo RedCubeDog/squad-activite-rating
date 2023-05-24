@@ -18,15 +18,10 @@ public class HardWorkController {
 
 
     private final WorkService<HardWork> hardWorkService;
-    private final AppUserService appUserService;
-    private final UserToWorkService userToWorkService;
 
     @Autowired
-    public HardWorkController(WorkService<HardWork> hardWorkService, AppUserService appUserService, UserToWorkService userToWorkService) {
-
+    public HardWorkController(WorkService<HardWork> hardWorkService) {
         this.hardWorkService = hardWorkService;
-        this.appUserService = appUserService;
-        this.userToWorkService = userToWorkService;
     }
 
     /**

@@ -121,10 +121,44 @@ public class UserToWorkController {
     }
 
     @RequestMapping(value = "/userToHardWork/{id}/delete", method = {RequestMethod.GET, RequestMethod.POST})
-    public String deleteHardWork(@PathVariable("id") Long userToHardWorkId) {
+    public String deleteUserToHardWork(@PathVariable("id") Long userToHardWorkId) {
         Optional<UserToHardWork> hardWorkOptional = userToWorkService.getUserToHardWorkById(userToHardWorkId);
         if (hardWorkOptional.isPresent()) {
             userToWorkService.deleteUserToHardWork(userToHardWorkId);
+        } else {
+            return "/error/page";
+        }
+
+        return "redirect:/userToWorks";
+    }
+
+    @GetMapping("/userToSocialWork/{id}/update")
+    public String updateUserToSocialWork(@PathVariable("id") Long userToSocialWorkId, Model model) {
+        Optional<UserToSocialWork> userToSocialWorkOptional = userToWorkService.getUserToSocialWorkById(userToSocialWorkId);
+        if (userToSocialWorkOptional.isPresent()) {
+            UserToSocialWork userToSocialWork = userToSocialWorkOptional.get();
+            model.addAttribute("userToSocialWork", userToSocialWork);
+            model.addAttribute("works",hardWorkService.getAllWorks());
+            model.addAttribute("appUsers", appUserService.getAllUsers());
+        } else {
+            return "/error/page";
+        }
+
+        return "/userToSocialWork/update";
+    }
+
+    @PostMapping("/userToSocialWork/{id}/update")
+    public String updateUserToSocialWork(@PathVariable("id") Long userToSocialWorkId, UserToSocialWork userToSocialWork) {
+        //TODO добавить обработку ошибок
+        userToWorkService.updateUserToSocialWork(userToSocialWork,userToSocialWorkId);
+        return "redirect:/userToWorks";
+    }
+
+    @RequestMapping(value = "/userToSocialWork/{id}/delete", method = {RequestMethod.GET, RequestMethod.POST})
+    public String deleteUserToSocialWork(@PathVariable("id") Long userToSocialWorkId) {
+        Optional<UserToSocialWork> hardWorkOptional = userToWorkService.getUserToSocialWorkById(userToSocialWorkId);
+        if (hardWorkOptional.isPresent()) {
+            userToWorkService.deleteUserToSocialWork(userToSocialWorkId);
         } else {
             return "/error/page";
         }

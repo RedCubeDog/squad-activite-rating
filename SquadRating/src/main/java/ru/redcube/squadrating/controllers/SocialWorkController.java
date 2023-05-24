@@ -18,15 +18,10 @@ public class SocialWorkController {
 
 
     private final WorkService<SocialWork> socialWorkService;
-    private final AppUserService appUserService;
-    private final UserToWorkService userToWorkService;
 
     @Autowired
-    public SocialWorkController(WorkService<SocialWork> socialWorkService, AppUserService appUserService, UserToWorkService userToWorkService) {
-
+    public SocialWorkController(WorkService<SocialWork> socialWorkService) {
         this.socialWorkService = socialWorkService;
-        this.appUserService = appUserService;
-        this.userToWorkService = userToWorkService;
     }
 
     /**
@@ -130,7 +125,7 @@ public class SocialWorkController {
     /**
      * Страница работы
      *
-     * @param model      Модель для работы
+     * @param model        Модель для работы
      * @param socialWorkId Id работы
      * @return Страница работы
      */
@@ -141,24 +136,9 @@ public class SocialWorkController {
         if (socialWorkOptional.isPresent()) {
             SocialWork socialWork = socialWorkOptional.get();
             model.addAttribute("socialWork", socialWork);
-            model.addAttribute("appUsers", appUserService.getAllUsers());
-            model.addAttribute("userToSocialWork", new UserToSocialWork());
         } else {
             return "/error/page";
         }
         return "/socialWork/detail";
-    }
-
-    /**
-     * Добавление AppUser к работе, из деталей работы
-     *
-     * @param socialWorkId Id работы
-     * @return Переход на страницу с работами
-     */
-    @PostMapping("/socialWork/{id}")
-    public String createUserToWork(UserToSocialWork userToSocialWork, @PathVariable("id") Long socialWorkId) {
-        userToSocialWork.setWork(socialWorkService.getWorkById(socialWorkId).get());
-        userToWorkService.saveUserToSocialWork(userToSocialWork);
-        return "redirect:/socialWorks";
     }
 }

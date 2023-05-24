@@ -22,8 +22,6 @@
             <th>Description</th>
             <th>Date</th>
             <th>Coefficient</th>
-            <th>User</th>
-            <th>TimeOfWork</th>
         </tr>
         <tbody>
         <tr>
@@ -32,12 +30,8 @@
             <td th:text="${hardWork.date}"></td>
             <td th:text="${hardWork.coefficient}"></td>
         </tr>
-        <tr>
-
-        </tr>
         </tbody>
     </table>
-    <input type="submit" value="Добавить"/>
     <div>
         <a th:href="@{/hardWorks}">Назад</a> <br>
     </div>
