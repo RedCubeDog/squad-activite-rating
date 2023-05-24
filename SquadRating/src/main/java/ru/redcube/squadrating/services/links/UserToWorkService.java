@@ -26,13 +26,16 @@ public class UserToWorkService {
     public List<UserToSocialWork> getUserToSocialWorks() {
         return userToSocialWorkDAO.findAll();
     }
+
     public List<UserToHardWork> getUserToHardWorks() {
         return userToHardWorkDAO.findAll();
     }
+
     @Transactional
     public Optional<UserToHardWork> getUserToHardWorkById(Long id) {
         return userToHardWorkDAO.findById(id);
     }
+
     @Transactional
     public void saveUserToHardWork(UserToHardWork userToHardWork) {
         userToHardWorkDAO.save(userToHardWork);
