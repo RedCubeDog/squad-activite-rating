@@ -9,11 +9,21 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+/**
+ * Конфигурация для Spring Security
+ */
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
 
+    /**
+     * Фильтры для запросов.
+     * Тут указывается к чему и с какой ролью имеет доступ пользователь
+     * @param http
+     * @return
+     * @throws Exception
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -34,6 +44,10 @@ public class SecurityConfig {
         return http.build();
     }
 
+    /**
+     * Тут указывается тип шифрования пароля пользователей
+     * @return
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
 //        return new BCryptPasswordEncoder(); // todo зашифровать

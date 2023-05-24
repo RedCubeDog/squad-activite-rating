@@ -8,6 +8,10 @@ import ru.redcube.squadrating.entity.work.SocialWork;
 
 import java.util.List;
 
+/**
+ * Сущность, отвечающая за данные пользователя для отображения в таблицах.
+ * Хранит имя, фамилию, отчество, логин, почту, роль в отряде и состояние
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

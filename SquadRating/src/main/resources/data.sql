@@ -1,10 +1,16 @@
 insert into squad (id, name)
 values (1, 'squad1');
 
-insert into security_user (username, password, roles, active)
-values ('user', '123', 'ROLE_BASIC_STATE', true),
-       ('admin', '123', 'ROLE_ADMINISTRATION_STATE', true),
-       ('userAndAdmin', '123', 'ROLE_BASIC_STATE, ROLE_ADMINISTRATION_STATE', true);
+insert into security_user (username, password, active)
+values ('user', '123', true),
+       ('admin', '123', true),
+       ('userAndAdmin', '123', true);
+
+insert into user_role
+values (1, 'BASIC_STATE'),
+       (2, 'ADMINISTRATION_STATE'),
+       (3, 'BASIC_STATE'),
+       (3, 'ADMINISTRATION_STATE');
 
 insert into squad_user (id, email, first_name, last_name, login, patronymic, squad_role, state, squad_id)
 values (1, 'test_email1@email.com', 'firstname1', 'last_name1', 'login1', 'patronymic1', 'CANDIDATE', 'BASIC_STATE', 1);
