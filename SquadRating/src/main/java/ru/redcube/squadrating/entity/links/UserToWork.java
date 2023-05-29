@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Time;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -17,5 +18,5 @@ public abstract class UserToWork {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Time timeOfWork;
+    private LocalDateTime timeOfWork;
 }

@@ -18,7 +18,7 @@ public class AppUserController {
 
     @GetMapping("/users")
     public String getMainPage(Model model) {
-        model.addAttribute("users", appUserService.getUsers());
+        model.addAttribute("users", appUserService.getAllUsers());
         return "/users";
     }
 }

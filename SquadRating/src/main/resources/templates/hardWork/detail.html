@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="'Работа ' + ${hardWork.id}"></title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%
+        }
+
+        th, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<form action="#" th:action="@{/hardWork/{id}(id=${hardWork.id})}"
+      method="post">
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Coefficient</th>
+        </tr>
+        <tbody>
+        <tr>
+            <td th:text="${hardWork.title}"></td>
+            <td th:text="${hardWork.description}"></td>
+            <td th:text="${hardWork.date}"></td>
+            <td th:text="${hardWork.coefficient}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <div>
+        <a th:href="@{/hardWorks}">Назад</a> <br>
+    </div>
+
+</form>
+</body>
+</html>
