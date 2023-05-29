@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#" th:action="@{/socialWork/{id}/delete(id=${socialWork.id})}" th:object="${socialWork}" method="post">
+    <div>
+        Работа ID <span th:text="${socialWork.id}"></span>
+        , тема: <span th:text="${socialWork.title}"></span>
+        удалена
+        <br><br><br><br><br>
+    </div>
+</form>
+
+<a th:href="@{/socialWorks}">Назад</a> <br>
+</body>
+</html>

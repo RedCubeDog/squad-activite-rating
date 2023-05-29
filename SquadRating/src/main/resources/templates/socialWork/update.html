@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="#" th:action="@{/socialWork/{id}/update(id=${socialWork.id})}" th:object="${socialWork}" method="post">
+
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Coefficient</th>
+        </tr>
+        <tbody>
+        <tr>
+            <td>
+                <input type="text" th:field="*{title}" id="title" placeholder="Title"
+                       name="title" th:value="${socialWork.title}">
+            </td>
+            <td>
+                <input type="text" th:field="*{description}" id="description" placeholder="Description"
+                       name="description" th:value="${socialWork.description}">
+            </td>
+            <td>
+                <input type="datetime-local" th:field="*{date}" id="date" placeholder="Date"
+                       name="date" th:value="${socialWork.date}">
+            </td>
+            <td>
+                <input type="number" th:field="*{coefficient}" id="coefficient" placeholder="Coefficient"
+                       name="coefficient" th:value="${socialWork.coefficient}">
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <button type="submit">Update Work</button>
+</form>
+
+
+</body>
+</html>

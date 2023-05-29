@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Social Work</title>
+</head>
+<body>
+<form action="#" th:action="@{/socialWork/create}" th:object="${socialWork}" method="post">
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Coefficient</th>
+        </tr>
+        <tbody>
+        <tr>
+            <td>
+                <input type="text" th:field="*{title}" id="title" placeholder="Title">
+            </td>
+            <td>
+                <input type="text" th:field="*{description}" id="description" placeholder="Description">
+            </td>
+            <td>
+                <input type="datetime-local" th:field="*{date}" id="date" placeholder="Date">
+            </td>
+            <td>
+                <input type="number" th:field="*{coefficient}" id="coefficient" placeholder="Coefficient">
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div>
+        <input type="submit" class="btn btn-secondary" value="Добавить"/>
+        <a class="ml-4" th:href="@{/}">Отмена</a>
+    </div>
+</form>
+</body>
+</html>

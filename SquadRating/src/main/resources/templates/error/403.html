@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <title>Ошибка</title>
+    <style>
+        .red_color {
+            color: red;
+        }
+    </style>
+
+</head>
+<body>
+
+<h1 class="red_color">Отказано в доступе</h1>
+<br><br>
+<h2>Пользователь: <span th:text=" "></span>!</h2>
+<h2 th:text=" MSG "/>
+<hr/>
+<a th:href="@{'/'}">Перейти на главную страницу</a>
+
+</body>
+</html>

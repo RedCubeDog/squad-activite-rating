@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Социальная работа</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%
+        }
+
+        th, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    Добавить <a th:href="@{/socialWork/create}">новую работу</a>
+</div>
+
+<table>
+    <caption>Социальная работа</caption>
+    <thead>
+    <tr>
+        <th>work_id</th>
+        <th>title</th>
+        <th>description</th>
+        <th>date</th>
+        <th>coefficient</th>
+        <th>Detail</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="socialWork : ${socialWorks}">
+        <td th:text="${socialWork.id}"></td>
+        <td th:text="${socialWork.title}"></td>
+        <td th:text="${socialWork.description}"></td>
+        <td th:text="${socialWork.date}"></td>
+        <td th:text="${socialWork.coefficient}"></td>
+        <td><a th:href="@{/socialWork/{id}(id=${socialWork.id})}">Detail</a></td>
+        <td><a th:href="@{/socialWork/{id}/update(id=${socialWork.id})}">Edit</a></td>
+        <td><a th:href="@{/socialWork/{id}/delete(id=${socialWork.id})}">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/mainPage}">Вернуться на главную страницу.</a>
+</body>
+</html>
