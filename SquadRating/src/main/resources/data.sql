@@ -1,25 +1,32 @@
-insert into squad (id, name)
-values (1, 'squad1');
+insert into squad (name)
+values ('squad1'),
+       ('squad2'),
+       ('squad7');
 
 insert into security_user (username, password, active)
 values ('user', '123', true),
        ('admin', '123', true),
-       ('userAndAdmin', '123', true);
+       ('userAndAdmin', '123', true),
+       ('user1', '123', true),
+       ('user2', '123', true),
+       ('user3', '123', true);
 
 insert into user_role
 values (1, 'BASIC_STATE'),
        (2, 'ADMINISTRATION_STATE'),
        (3, 'BASIC_STATE'),
-       (3, 'ADMINISTRATION_STATE');
+       (3, 'ADMINISTRATION_STATE'),
+       (4, 'BASIC_STATE'),
+       (5, 'BASIC_STATE'),
+       (6, 'BASIC_STATE');
 
-insert into squad_user (id, email, first_name, last_name, login, patronymic, squad_role, state, squad_id)
-values (1, 'test_email1@email.com', 'firstname1', 'last_name1', 'login1', 'patronymic1', 'CANDIDATE', 'BASIC_STATE', 1);
-insert into squad_user (id, email, first_name, last_name, login, patronymic, squad_role, state, squad_id)
-values (2, 'test_email2@email.com', 'firstname2', 'last_name2', 'login2', 'patronymic2', 'CANDIDATE', 'BASIC_STATE', 1);
-insert into squad_user (id, email, first_name, last_name, login, patronymic, squad_role, state, squad_id)
-values (3, 'test_email3@email.com', 'firstname3', 'last_name3', 'login3', 'patronymic3', 'CANDIDATE', 'BASIC_STATE', 1);
-insert into squad_user (id, email, first_name, last_name, login, patronymic, squad_role, state, squad_id)
-values (4, 'test_email4@email.com', 'firstname4', 'last_name4', 'login4', 'patronymic4', 'CANDIDATE', 'BASIC_STATE', 1);
+insert into squad_user (email, first_name, last_name, patronymic, squad_role, squad_id, security_id)
+values ('user@email.com', 'User', 'Userovich', 'patr1', 'CANDIDATE', 1, 1),
+       ('admin@email.com', 'Admin', 'Adminovich', 'patr2', 'CANDIDATE', 1, 2),
+       ('userAndAdmin@email.com', 'UserAndAdmin', 'Usedmin', 'patr3', 'CANDIDATE', 2, 3),
+       ('test_email4@email.com', 'User1', 'Userovich1', 'patronymic1', 'CANDIDATE', 2, 4),
+       ('test_email5@email.com', 'User2', 'Userovich2', 'patronymic2', 'CANDIDATE', 3, 5),
+       ('test_email6@email.com', 'User3', 'Userovich3', 'patronymic3', 'CANDIDATE', 3, 6);
 
 insert into hard_work (title, description, date, coefficient)
 values ('HardWork1', 'make something 1', '2022-09-19', 1),

@@ -5,7 +5,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.*;
-import ru.redcube.squadrating.entity.user.SquadUser;
+import ru.redcube.squadrating.entity.squadUser.SquadUser;
 import ru.redcube.squadrating.entity.work.SocialWork;
 
 @Getter

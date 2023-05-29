@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.redcube.squadrating.entity.squadUser.SquadUser;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -26,9 +27,9 @@ public class SecurityUser {
     private String password;
     private boolean active;
 
-//    @OneToOne(mappedBy = "securityUser",
-//            cascade = CascadeType.ALL)
-//    private SquadUser squadUser;
+    @OneToOne(mappedBy = "securityUser",
+            cascade = CascadeType.ALL)
+    private SquadUser squadUser;
 
     @ElementCollection(targetClass = SecurityRole.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))

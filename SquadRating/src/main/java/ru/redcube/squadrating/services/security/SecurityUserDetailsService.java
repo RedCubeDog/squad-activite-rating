@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import ru.redcube.squadrating.entity.security.SecurityRole;
 import ru.redcube.squadrating.entity.security.SecurityUser;
 import ru.redcube.squadrating.repositories.security.SecurityUserRepository;
+import ru.redcube.squadrating.repositories.squadUser.SquadUserRepository;
 
 import java.util.*;
 import java.util.stream.Collectors;

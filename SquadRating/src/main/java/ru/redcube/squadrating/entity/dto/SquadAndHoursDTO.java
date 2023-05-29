@@ -6,7 +6,7 @@ import ru.redcube.squadrating.entity.links.UserToHardWork;
 import ru.redcube.squadrating.entity.links.UserToSocialWork;
 import ru.redcube.squadrating.entity.links.UserToWork;
 import ru.redcube.squadrating.entity.squad.SquadImpl;
-import ru.redcube.squadrating.entity.user.SquadUser;
+import ru.redcube.squadrating.entity.squadUser.SquadUser;
 
 import java.time.Duration;
 import java.util.*;

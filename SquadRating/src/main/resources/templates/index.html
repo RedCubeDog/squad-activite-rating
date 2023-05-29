@@ -3,24 +3,16 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="UTF-8">
-    <title>Приветственная страница</title>
+    <title>LoginPage</title>
 </head>
 <body>
-<h1>Добро пожаловать!</h1>
-<p>Мы рады приветствовать вас на нашей веб-странице!</p>
 <div sec:authorize="isAuthenticated()">
-    <div sec:authorize="hasRole('ROLE_BASIC_STATE')">
-        <a th:href="@{/users}">Посмотреть всех пользователей.</a>
-        <a th:href="@{/works}">Посмотреть все работы.</a>
-    </div>
-    <div sec:authorize="hasRole('ROLE_ADMINISTRATION_STATE')">
-        <a th:href="@{/userToWorks}">Посмотреть все отработки.</a>
-    </div>
+    <a th:href="@{/mainPage}">Войти на главную страницу</a>
     <a th:href="@{/logout}">Выйти</a>
 </div>
 <div sec:authorize="!isAuthenticated()">
-    <a th:href="@{/login}">Вход</a>
-    <a th:href="@{/registration}">Регистрация</a>
+    <a th:href="@{/login}">Войти</a>
+    <a th:href="@{/registration}">Зарегистрироваться</a>
 </div>
 </body>
 </html>
