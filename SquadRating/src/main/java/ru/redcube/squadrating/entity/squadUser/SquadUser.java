@@ -1,18 +1,18 @@
-package ru.redcube.squadrating.entity.user;
+package ru.redcube.squadrating.entity.squadUser;
 
 import jakarta.persistence.*;
 import lombok.*;
 import ru.redcube.squadrating.entity.squad.SquadImpl;
 import ru.redcube.squadrating.entity.work.HardWork;
 import ru.redcube.squadrating.entity.work.SocialWork;
-import ru.redcube.squadrating.configs.entities.User;
 
 import java.util.List;
 
-@Getter
-@Setter
-@EqualsAndHashCode(exclude = "id")
-@Builder
+/**
+ * Сущность, отвечающая за данные пользователя для отображения в таблицах.
+ * Хранит имя, фамилию, отчество, логин, почту, роль в отряде и состояние
+ */
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -31,9 +31,12 @@ public class SquadUser {
     private String email;
     @Enumerated(EnumType.STRING)
     private SquadRole squadRole;
+    @Enumerated(EnumType.STRING)
+    private SquadUserState state;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "security_id")
-    private User securityUser;
+    private SecurityUser securityUser;
 
     @ManyToMany(mappedBy = "users",
             cascade = {CascadeType.PERSIST, CascadeType.DETACH,

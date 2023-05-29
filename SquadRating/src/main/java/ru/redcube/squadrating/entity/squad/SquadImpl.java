@@ -2,7 +2,7 @@ package ru.redcube.squadrating.entity.squad;
 
 import jakarta.persistence.*;
 import lombok.*;
-import ru.redcube.squadrating.entity.user.SquadUser;
+import ru.redcube.squadrating.entity.squadUser.SquadUser;
 
 import java.util.List;
 
@@ -12,7 +12,6 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 @Entity
 @Table(name = "squad")
 public class SquadImpl implements Squad {

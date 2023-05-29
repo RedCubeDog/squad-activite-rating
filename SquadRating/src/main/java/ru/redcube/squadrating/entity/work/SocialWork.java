@@ -1,7 +1,7 @@
 package ru.redcube.squadrating.entity.work;
 
 import jakarta.persistence.*;
-import ru.redcube.squadrating.entity.user.SquadUser;
+import ru.redcube.squadrating.entity.squadUser.SquadUser;
 
 import java.util.List;
 

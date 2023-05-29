@@ -1,36 +1,25 @@
-insert into squad (name)
-values ('squad1'),
-       ('squad2'),
-       ('squad7');
+insert into squad (id, name)
+values (1, 'squad1');
 
-insert into mg_users (username, password, active)
-values ('user1', '123', TRUE),
-       ('user2', '123', TRUE),
-       ('user3', '123', TRUE),
-       ('user4', '123', TRUE),
-       ('user5', '123', TRUE),
-       ('user6', '123', TRUE);
+insert into security_user (username, password, active)
+values ('user', '123', true),
+       ('admin', '123', true),
+       ('userAndAdmin', '123', true);
 
-insert into squad_user (email, first_name, last_name, patronymic, squad_role, squad_id, security_id)
-values ('test_email1@email.com', 'firstname1', 'last_name1', 'patronymic1', 'CANDIDATE', 1, 1),
-       ('test_email2@email.com', 'firstname2', 'last_name2', 'patronymic2', 'CANDIDATE', 1, 2),
-       ('test_email3@email.com', 'firstname3', 'last_name3', 'patronymic3', 'CANDIDATE', 2, 3),
-       ('test_email4@email.com', 'firstname4', 'last_name4', 'patronymic4', 'CANDIDATE', 2, 4),
-       ('test_email5@email.com', 'firstname5', 'last_name5', 'patronymic5', 'CANDIDATE', 3, 5),
-       ('test_email6@email.com', 'firstname6', 'last_name6', 'patronymic6', 'CANDIDATE', 3, 6);
+insert into user_role
+values (1, 'BASIC_STATE'),
+       (2, 'ADMINISTRATION_STATE'),
+       (3, 'BASIC_STATE'),
+       (3, 'ADMINISTRATION_STATE');
 
-insert into role (name)
-values ('BASIC_STATE'),
-       ('ADMINISTRATION_STATE');
-
-
-INSERT INTO user_to_role (user_id, role_id)
-VALUES (1, 1),
-       (2, 1),
-       (3, 1),
-       (4, 1),
-       (5, 2),
-       (6, 2);
+insert into squad_user (id, email, first_name, last_name, login, patronymic, squad_role, state, squad_id)
+values (1, 'test_email1@email.com', 'firstname1', 'last_name1', 'login1', 'patronymic1', 'CANDIDATE', 'BASIC_STATE', 1);
+insert into squad_user (id, email, first_name, last_name, login, patronymic, squad_role, state, squad_id)
+values (2, 'test_email2@email.com', 'firstname2', 'last_name2', 'login2', 'patronymic2', 'CANDIDATE', 'BASIC_STATE', 1);
+insert into squad_user (id, email, first_name, last_name, login, patronymic, squad_role, state, squad_id)
+values (3, 'test_email3@email.com', 'firstname3', 'last_name3', 'login3', 'patronymic3', 'CANDIDATE', 'BASIC_STATE', 1);
+insert into squad_user (id, email, first_name, last_name, login, patronymic, squad_role, state, squad_id)
+values (4, 'test_email4@email.com', 'firstname4', 'last_name4', 'login4', 'patronymic4', 'CANDIDATE', 'BASIC_STATE', 1);
 
 insert into hard_work (title, description, date, coefficient)
 values ('HardWork1', 'make something 1', '2022-09-19', 1),
