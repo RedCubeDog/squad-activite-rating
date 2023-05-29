@@ -2,7 +2,7 @@
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Работы</title>
+    <title>Отработки</title>
     <style>
         table {
             border-collapse: collapse;
@@ -39,12 +39,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="work : ${userToSocialWork}">
+                <tr th:each="work : ${userToHardWork}">
                     <td th:text="${work.id}"></td>
                     <td th:text="${work.getWork().getTitle()}"></td>
                     <td th:text="${work.getWork().getCoefficient()}"></td>
                     <td th:text="${work.getWork().getDate()}"></td>
-                    <td th:text="${work.getTimeOfWork()}"></td>
+                    <td th:text="${work.getFormattedTimeWork()}"></td>
                     <td th:text="${work.getWork().getDescription()}"></td>
                     <td th:text="${work.getUser().getFirstName()}"></td>
                     <td th:text="${work.getUser().getLastName()}"></td>
@@ -79,12 +79,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="work : ${userToHardWork}">
+                <tr th:each="work : ${userToSocialWork}">
                     <td th:text="${work.id}"></td>
                     <td th:text="${work.getWork().getTitle()}"></td>
                     <td th:text="${work.getWork().getCoefficient()}"></td>
                     <td th:text="${work.getWork().getDate()}"></td>
-                    <td th:text="${work.getTimeOfWork()}"></td>
+                    <td th:text="${work.getFormattedTimeWork()}"></td>
                     <td th:text="${work.getWork().getDescription()}"></td>
                     <td th:text="${work.getUser().getFirstName()}"></td>
                     <td th:text="${work.getUser().getLastName()}"></td>

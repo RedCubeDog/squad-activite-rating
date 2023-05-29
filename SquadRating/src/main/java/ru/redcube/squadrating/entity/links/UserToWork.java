@@ -2,9 +2,11 @@ package ru.redcube.squadrating.entity.links;
 
 import jakarta.persistence.*;
 import lombok.*;
+import ru.redcube.squadrating.entity.converters.DurationAttributeConverter;
 
 import java.sql.Time;
 import java.time.LocalDateTime;
+
 
 @Getter
 @Setter
@@ -19,4 +21,5 @@ public abstract class UserToWork {
     private Long id;
 
     private LocalDateTime timeOfWork;
+
 }
