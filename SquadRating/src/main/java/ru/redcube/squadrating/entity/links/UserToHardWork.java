@@ -5,6 +5,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.*;
+import ru.redcube.squadrating.entity.converters.DurationAttributeConverter;
 import ru.redcube.squadrating.entity.squadUser.SquadUser;
 import ru.redcube.squadrating.entity.work.HardWork;
 
@@ -36,5 +37,10 @@ public class UserToHardWork extends UserToWork {
         long minutes = localTime.getMinute();
 
         return Duration.ofHours(hours).plusMinutes(minutes);
+    }
+
+    public void setTimeOfWork(String timeOfWork) {
+        super.setTimeOfWork(new DurationAttributeConverter()
+                .convertToEntityAttribute(timeOfWork));
     }
 }

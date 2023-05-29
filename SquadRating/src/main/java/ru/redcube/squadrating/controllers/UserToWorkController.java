@@ -48,7 +48,6 @@ public class UserToWorkController {
         model.addAttribute("userToHardWork", new UserToHardWork());
         model.addAttribute("works",hardWorkService.getAllWorks());
         model.addAttribute("appUsers", squadUserService.getAllUsers());
-
         return "/userToHardWork/add";
     }
 
@@ -59,7 +58,6 @@ public class UserToWorkController {
      */
     @PostMapping("/userToHardWork/create")
     public String createUserToHardWork(UserToHardWork userToHardWork){
-
         userToWorkService.saveUserToHardWork(userToHardWork);
 
         return "redirect:/userToWorks";
