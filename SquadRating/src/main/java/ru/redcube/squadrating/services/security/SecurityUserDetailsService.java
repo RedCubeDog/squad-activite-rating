@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 /**
  * Сервис, отвечающий за загрузку пользователей
- * при входе и за сохранение при регистрации
+ * при входе и за сохранении при регистрации
  */
 @Service
 public class SecurityUserDetailsService implements UserDetailsService {
@@ -68,6 +68,7 @@ public class SecurityUserDetailsService implements UserDetailsService {
 
     /**
      * Добавление пользователя в БД при регистрации
+     *
      * @param securityUser
      * @throws Exception
      */

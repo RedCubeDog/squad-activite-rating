@@ -5,10 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.redcube.squadrating.entity.links.UserToHardWork;
 import ru.redcube.squadrating.entity.work.HardWork;
-import ru.redcube.squadrating.services.appuser.AppUserService;
-import ru.redcube.squadrating.services.links.UserToWorkService;
 import ru.redcube.squadrating.services.work.WorkService;
 
 import java.util.Optional;

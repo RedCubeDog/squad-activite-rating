@@ -8,6 +8,10 @@ import lombok.*;
 import ru.redcube.squadrating.entity.squadUser.SquadUser;
 import ru.redcube.squadrating.entity.work.HardWork;
 
+import java.sql.Time;
+import java.time.Duration;
+import java.time.LocalTime;
+
 @Getter
 @Setter
 @EqualsAndHashCode(exclude = "id")
@@ -25,4 +29,12 @@ public class UserToHardWork extends UserToWork {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private SquadUser user;
+
+    public Duration convertTimeToDuration(Time time) {
+        LocalTime localTime = time.toLocalTime();
+        long hours = localTime.getHour();
+        long minutes = localTime.getMinute();
+
+        return Duration.ofHours(hours).plusMinutes(minutes);
+    }
 }

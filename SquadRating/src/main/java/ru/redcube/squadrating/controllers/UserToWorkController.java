@@ -7,12 +7,8 @@ import ru.redcube.squadrating.entity.links.UserToHardWork;
 import ru.redcube.squadrating.entity.links.UserToSocialWork;
 import ru.redcube.squadrating.entity.work.HardWork;
 import ru.redcube.squadrating.entity.work.SocialWork;
-import ru.redcube.squadrating.services.appuser.AppUserService;
 import ru.redcube.squadrating.services.links.UserToWorkService;
-import ru.redcube.squadrating.services.work.WorkService;
-
-import java.util.Optional;
-
+import ru.redcube.squadrating.services.squadUser.SquadUserService;
 import ru.redcube.squadrating.services.work.WorkService;
 
 import java.util.Optional;
@@ -23,14 +19,14 @@ public class UserToWorkController {
     private final UserToWorkService userToWorkService;
     private final WorkService<HardWork> hardWorkService;
     private final WorkService<SocialWork> socialWorkWorkService;
-    private final AppUserService appUserService;
+    private final SquadUserService squadUserService;
 
 
-    public UserToWorkController(UserToWorkService userToWorkService, WorkService<HardWork> hardWorkService, WorkService<SocialWork> socialWorkWorkService, AppUserService appUserService) {
+    public UserToWorkController(UserToWorkService userToWorkService, WorkService<HardWork> hardWorkService, WorkService<SocialWork> socialWorkWorkService, SquadUserService squadUserService) {
         this.userToWorkService = userToWorkService;
         this.hardWorkService = hardWorkService;
         this.socialWorkWorkService = socialWorkWorkService;
-        this.appUserService = appUserService;
+        this.squadUserService = squadUserService;
     }
 
     @GetMapping("/userToWorks")
@@ -51,7 +47,7 @@ public class UserToWorkController {
         //TODO добавить пользователя который создает работу
         model.addAttribute("userToHardWork", new UserToHardWork());
         model.addAttribute("works",hardWorkService.getAllWorks());
-        model.addAttribute("appUsers", appUserService.getAllUsers());
+        model.addAttribute("appUsers", squadUserService.getAllUsers());
 
         return "/userToHardWork/add";
     }
@@ -80,7 +76,7 @@ public class UserToWorkController {
         //TODO добавить пользователя который создает работу
         model.addAttribute("userToSocialWork", new UserToSocialWork());
         model.addAttribute("works",socialWorkWorkService.getAllWorks());
-        model.addAttribute("appUsers", appUserService.getAllUsers());
+        model.addAttribute("appUsers", squadUserService.getAllUsers());
 
         return "/userToSocialWork/add";
     }
@@ -105,7 +101,7 @@ public class UserToWorkController {
             UserToHardWork userToHardWork = userToHardWorkOptional.get();
             model.addAttribute("userToHardWork", userToHardWork);
             model.addAttribute("works",hardWorkService.getAllWorks());
-            model.addAttribute("appUsers", appUserService.getAllUsers());
+            model.addAttribute("appUsers", squadUserService.getAllUsers());
         } else {
             return "/error/page";
         }
@@ -139,7 +135,7 @@ public class UserToWorkController {
             UserToSocialWork userToSocialWork = userToSocialWorkOptional.get();
             model.addAttribute("userToSocialWork", userToSocialWork);
             model.addAttribute("works",hardWorkService.getAllWorks());
-            model.addAttribute("appUsers", appUserService.getAllUsers());
+            model.addAttribute("appUsers", squadUserService.getAllUsers());
         } else {
             return "/error/page";
         }
