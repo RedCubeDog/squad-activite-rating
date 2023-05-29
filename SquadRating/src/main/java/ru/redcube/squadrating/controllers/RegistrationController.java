@@ -5,30 +5,41 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import ru.redcube.squadrating.configs.User;
-import ru.redcube.squadrating.services.config.UserService;
+import ru.redcube.squadrating.entity.dto.RegistrationFormDTO;
+import ru.redcube.squadrating.entity.security.SecurityUser;
+import ru.redcube.squadrating.entity.squadUser.SquadUser;
+import ru.redcube.squadrating.services.security.SecurityUserDetailsService;
 
 @Controller
 public class RegistrationController {
 
-    private final UserService userService;
+    private final SecurityUserDetailsService securityUserDetailsService;
 
     @Autowired
-    public RegistrationController(UserService userService) {
-        this.userService = userService;
+    public RegistrationController(SecurityUserDetailsService securityUserDetailsService) {
+        this.securityUserDetailsService = securityUserDetailsService;
     }
 
     @GetMapping("/registration")
-    public String registration() {
+    public String registration(Model model) {
+        RegistrationFormDTO registrationForm
+                = new RegistrationFormDTO(new SecurityUser(), new SquadUser());
+        model.addAttribute("registrationForm", registrationForm);
         return "registration";
     }
 
     @PostMapping("/registration")
-    public String addUser(User user, Model model) {
+    public String addUser(RegistrationFormDTO registrationForm,
+                          Model model) {
         try {
-            userService.addUser(user);
+            SecurityUser securityUser = registrationForm.getSecurityUser();
+            SquadUser squadUser = registrationForm.getSquadUser();
+            securityUser.setSquadUser(squadUser);
+            squadUser.setSecurityUser(securityUser);
+            securityUserDetailsService.addUser(securityUser);
             return "redirect:/";
         } catch (Exception ex) {
+            model.addAttribute("registrationForm", registrationForm);
             model.addAttribute("message", "User exists");
             return "registration";
         }

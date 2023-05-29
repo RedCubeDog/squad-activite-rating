@@ -1,26 +1,18 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="UTF-8">
     <title>Приветственная страница</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%
-        }
-
-        th, td {
-            border: 1px solid black;
-        }
-    </style>
 </head>
 <body>
-<h1>Добро пожаловать!</h1>
-<p>Мы рады приветствовать вас на нашей веб-странице!</p>
-<a th:href="@{/users}">Посмотреть всех пользователей.</a>
-<a th:href="@{/hardWorks}">Посмотреть всю производственную работу.</a>
-<a th:href="@{/socialWorks}">Посмотреть всю социальную работу.</a>
-<a th:href="@{/userToWorks}">Посмотреть все отработки.</a>
-<a th:href="@{/logout}">Разлогиниться</a>
+<div sec:authorize="isAuthenticated()">
+    <a th:href="@{/mainPage}">Войти на главную страницу</a>
+    <a th:href="@{/logout}">Выйти</a>
+</div>
+<div sec:authorize="!isAuthenticated()">
+    <a th:href="@{/login}">Войти</a>
+    <a th:href="@{/registration}">Зарегистрироваться</a>
+</div>
 </body>
 </html>

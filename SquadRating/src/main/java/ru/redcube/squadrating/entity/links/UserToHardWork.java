@@ -5,7 +5,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.*;
-import ru.redcube.squadrating.entity.user.AppUser;
+import ru.redcube.squadrating.entity.squadUser.SquadUser;
 import ru.redcube.squadrating.entity.work.HardWork;
 
 @Getter
@@ -24,5 +24,5 @@ public class UserToHardWork extends UserToWork {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private AppUser user;
+    private SquadUser user;
 }
