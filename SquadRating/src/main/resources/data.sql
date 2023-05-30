@@ -1,7 +1,8 @@
 insert into squad (name)
 values ('squad1'),
        ('squad2'),
-       ('squad7');
+       ('squad7'),
+       ('default_squad');
 
 insert into security_user (username, password, active)
 values ('user', '123', true),

@@ -8,7 +8,8 @@
 <body>
 <h1>Добро пожаловать!</h1>
 <p>Мы рады приветствовать вас на нашей веб-странице!</p>
-<div sec:authorize="hasRole('ROLE_BASIC_STATE')">
+<div sec:authorize="hasRole('ROLE_BASIC_STATE')
+                            && !hasRole('ROLE_ADMINISTRATION_STATE')">
     <a th:href="@{/squadWorks}">Посмотреть отработку отряда.</a>
     <a th:href="@{/userToWorks}">Посмотреть все свои отработки.</a>
 </div>
