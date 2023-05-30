@@ -22,7 +22,7 @@
         <td>
             <table>
                 <caption>Посещение социальных отработок</caption>
-                <div>
+                <div sec:authorize="hasRole('ROLE_ADMINISTRATION_STATE')">
                     Добавить <a th:href="@{/userToSocialWork/create}">новое посещение </a>
                 </div>
                 <thead>
@@ -43,9 +43,6 @@
                         th:if="${work.user.securityUser.id == securityUserService
                     .getSecurityUser(username).id}">
                         <td th:replace="~{fragments/user_to_works_data_fragment :: userToWorksDataFragment(${work})}"></td>
-                        <td><a th:href="@{/userToSocialWork/{id}/update(id=${work.id})}">Edit</a></td>
-                        <td><a th:href="@{/userToSocialWork/{id}/delete(id=${work.id})}">Delete</a></td>
-
                     </tr>
                 </div>
                 </tbody>
@@ -56,7 +53,7 @@
         <td>
             <table>
                 <caption>Посещение разных отработок</caption>
-                <div>
+                <div sec:authorize="hasRole('ROLE_ADMINISTRATION_STATE')">
                     Добавить <a th:href="@{/userToHardWork/create}">новое посещение </a>
                 </div>
                 <thead>
@@ -76,8 +73,6 @@
                         th:if="${work.user.securityUser.id == securityUserService
                     .getSecurityUser(username).id}">
                         <td th:replace="~{fragments/user_to_works_data_fragment :: userToWorksDataFragment(${work})}"></td>
-                        <td><a th:href="@{/userToHardWork/{id}/update(id=${work.id})}">Edit</a></td>
-                        <td><a th:href="@{/userToHardWork/{id}/delete(id=${work.id})}">Delete</a></td>
                     </tr>
                 </div>
                 </tbody>
