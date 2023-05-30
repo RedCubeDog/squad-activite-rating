@@ -42,15 +42,7 @@
                 <tbody>
                 <tr sec:authorize="hasRole('ROLE_ADMINISTRATION_STATE')"
                     th:each="work : ${userToSocialWork}">
-                    <td th:text="${work.id}"></td>
-                    <td th:text="${work.getWork().getTitle()}"></td>
-                    <td th:text="${work.getWork().getCoefficient()}"></td>
-                    <td th:text="${work.getWork().getDate()}"></td>
-                    <td th:text="${work.getFormattedTimeWork()}"></td>
-                    <td th:text="${work.getWork().getDescription()}"></td>
-                    <td th:text="${work.getUser().getFirstName()}"></td>
-                    <td th:text="${work.getUser().getLastName()}"></td>
-                    <td th:text="${work.getUser().getPatronymic()}"></td>
+                    <td th:replace="~{fragments/user_to_works_data_fragment :: userToWorksDataFragment(${work})}"></td>
                     <td><a th:href="@{/userToSocialWork/{id}/update(id=${work.id})}">Edit</a></td>
                     <td><a th:href="@{/userToSocialWork/{id}/delete(id=${work.id})}">Delete</a></td>
                 </tr>
@@ -60,15 +52,7 @@
                     <tr th:each="work : ${userToSocialWork}"
                         th:if="${work.user.securityUser.id == securityUserService
                     .getSecurityUser(username).id}">
-                        <td th:text="${work.id}"></td>
-                        <td th:text="${work.getWork().getTitle()}"></td>
-                        <td th:text="${work.getWork().getCoefficient()}"></td>
-                        <td th:text="${work.getWork().getDate()}"></td>
-                        <td th:text="${work.getFormattedTimeWork()}"></td>
-                        <td th:text="${work.getWork().getDescription()}"></td>
-                        <td th:text="${work.getUser().getFirstName()}"></td>
-                        <td th:text="${work.getUser().getLastName()}"></td>
-                        <td th:text="${work.getUser().getPatronymic()}"></td>
+                        <td th:replace="~{fragments/user_to_works_data_fragment :: userToWorksDataFragment(${work})}"></td>
                         <td><a th:href="@{/userToSocialWork/{id}/update(id=${work.id})}">Edit</a></td>
                         <td><a th:href="@{/userToSocialWork/{id}/delete(id=${work.id})}">Delete</a></td>
 
@@ -102,15 +86,7 @@
                 <tbody>
                 <tr sec:authorize="hasRole('ROLE_ADMINISTRATION_STATE')"
                     th:each="work : ${userToHardWork}">
-                    <td th:text="${work.id}"></td>
-                    <td th:text="${work.getWork().getTitle()}"></td>
-                    <td th:text="${work.getWork().getCoefficient()}"></td>
-                    <td th:text="${work.getWork().getDate()}"></td>
-                    <td th:text="${work.getFormattedTimeWork()}"></td>
-                    <td th:text="${work.getWork().getDescription()}"></td>
-                    <td th:text="${work.getUser().getFirstName()}"></td>
-                    <td th:text="${work.getUser().getLastName()}"></td>
-                    <td th:text="${work.getUser().getPatronymic()}"></td>
+                    <td th:replace="~{fragments/user_to_works_data_fragment :: userToWorksDataFragment(${work})}"></td>
                     <td><a th:href="@{/userToHardWork/{id}/update(id=${work.id})}">Edit</a></td>
                     <td><a th:href="@{/userToHardWork/{id}/delete(id=${work.id})}">Delete</a></td>
                 </tr>
@@ -120,15 +96,7 @@
                     <tr th:each="work : ${userToHardWork}"
                         th:if="${work.user.securityUser.id == securityUserService
                     .getSecurityUser(username).id}">
-                        <td th:text="${work.id}"></td>
-                        <td th:text="${work.getWork().getTitle()}"></td>
-                        <td th:text="${work.getWork().getCoefficient()}"></td>
-                        <td th:text="${work.getWork().getDate()}"></td>
-                        <td th:text="${work.getFormattedTimeWork()}"></td>
-                        <td th:text="${work.getWork().getDescription()}"></td>
-                        <td th:text="${work.getUser().getFirstName()}"></td>
-                        <td th:text="${work.getUser().getLastName()}"></td>
-                        <td th:text="${work.getUser().getPatronymic()}"></td>
+                        <td th:replace="~{fragments/user_to_works_data_fragment :: userToWorksDataFragment(${work})}"></td>
                         <td><a th:href="@{/userToHardWork/{id}/update(id=${work.id})}">Edit</a></td>
                         <td><a th:href="@{/userToHardWork/{id}/delete(id=${work.id})}">Delete</a></td>
                     </tr>
