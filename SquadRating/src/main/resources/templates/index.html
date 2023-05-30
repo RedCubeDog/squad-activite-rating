@@ -9,7 +9,6 @@
 <div sec:authorize="isAuthenticated()">
     <a th:href="@{/mainPage}">Войти на главную страницу</a>
     <a th:href="@{/logout}">Выйти</a>
-    <span th:text="${#authentication.principal.username}"></span>
 </div>
 <div sec:authorize="!isAuthenticated()">
     <a th:href="@{/login}">Войти</a>

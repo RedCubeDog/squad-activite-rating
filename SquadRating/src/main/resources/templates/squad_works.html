@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="UTF-8">
     <title>Отработки отрядов</title>
@@ -29,11 +30,26 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="squadAndHours : ${squadsAndHours}">
+                <tr sec:authorize="hasRole('ROLE_ADMINISTRATION_STATE')"
+                    th:each="squadAndHours : ${squadsAndHours}">
                     <td th:text="${squadAndHours.getSquadName()}"></td>
                     <td th:text="${squadAndHours.getFormattedHardTimeWork()}"></td>
                     <td th:text="${squadAndHours.getFormattedSocialTimeWork()}"></td>
                 </tr>
+                <div sec:authorize="hasRole('ROLE_BASIC_STATE')
+                && !hasRole('ROLE_ADMINISTRATION_STATE')"
+                     th:with="username=${#authentication.name}">
+                    <tr th:each="squadAndHours : ${squadsAndHours}"
+                        th:if="${#strings
+                    .equals(squadAndHours.getSquadName().toString(),
+                    securityUserService
+                    .getSecurityUser(username)
+                    .squadUser.squadId.name.toString())}">
+                        <td th:text="${squadAndHours.getSquadName()}"></td>
+                        <td th:text="${squadAndHours.getFormattedHardTimeWork()}"></td>
+                        <td th:text="${squadAndHours.getFormattedSocialTimeWork()}"></td>
+                    </tr>
+                </div>
                 </tbody>
             </table>
         </td>

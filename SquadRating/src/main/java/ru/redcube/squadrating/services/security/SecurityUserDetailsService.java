@@ -10,9 +10,11 @@ import org.springframework.stereotype.Service;
 import ru.redcube.squadrating.entity.security.SecurityRole;
 import ru.redcube.squadrating.entity.security.SecurityUser;
 import ru.redcube.squadrating.repositories.security.SecurityUserRepository;
-import ru.redcube.squadrating.repositories.squadUser.SquadUserRepository;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -41,14 +43,19 @@ public class SecurityUserDetailsService implements UserDetailsService {
      */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        SecurityUser securityUser = getSecurityUser(username);
+        return new org.springframework.security.core.userdetails
+                .User(securityUser.getUsername(), securityUser.getPassword(),
+                mapRolesToAuthorities(securityUser.getRoles()));
+    }
+
+    public SecurityUser getSecurityUser(String username) {
         Optional<SecurityUser> myUser = securityUserRepository.findByUsername(username);
         if (myUser.isEmpty()) {
             throw new UsernameNotFoundException("User not found");
         }
         SecurityUser securityUser = myUser.get();
-        return new org.springframework.security.core.userdetails
-                .User(securityUser.getUsername(), securityUser.getPassword(),
-                mapRolesToAuthorities(securityUser.getRoles()));
+        return securityUser;
     }
 
     /**

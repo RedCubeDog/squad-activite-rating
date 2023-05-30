@@ -26,7 +26,7 @@ values ('user@email.com', 'User', 'Userovich', 'patr1', 'CANDIDATE', 1, 1),
        ('admin@email.com', 'Admin', 'Adminovich', 'patr2', 'CANDIDATE', 1, 2),
        ('userAndAdmin@email.com', 'UserAndAdmin', 'Usedmin', 'patr3', 'CANDIDATE', 2, 3),
        ('test_email4@email.com', 'User1', 'Userovich1', 'patronymic1', 'CANDIDATE', 2, 4),
-       ('test_email5@email.com', 'User2', 'Userovich2', 'patronymic2', 'CANDIDATE', 3, 5),
+       ('test_email5@email.com', 'User2', 'Userovich2', 'patronymic2', 'CANDIDATE', 2, 5),
        ('test_email6@email.com', 'User3', 'Userovich3', 'patronymic3', 'CANDIDATE', 3, 6);
 
 insert into hard_work (title, description, date, coefficient)
