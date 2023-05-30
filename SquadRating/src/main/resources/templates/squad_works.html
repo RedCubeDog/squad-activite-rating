@@ -37,7 +37,7 @@
                     <td th:text="${squadAndHours.getFormattedSocialTimeWork()}"></td>
                 </tr>
                 <div sec:authorize="hasRole('ROLE_BASIC_STATE')
-                && !hasRole('ROLE_ADMINISTRATION_STATE')"
+                        && !hasRole('ROLE_ADMINISTRATION_STATE')"
                      th:with="username=${#authentication.name}">
                     <tr th:each="squadAndHours : ${squadsAndHours}"
                         th:if="${#strings

@@ -8,6 +8,7 @@ import ru.redcube.squadrating.entity.links.UserToSocialWork;
 import ru.redcube.squadrating.entity.work.HardWork;
 import ru.redcube.squadrating.entity.work.SocialWork;
 import ru.redcube.squadrating.services.links.UserToWorkService;
+import ru.redcube.squadrating.services.security.SecurityUserDetailsService;
 import ru.redcube.squadrating.services.squadUser.SquadUserService;
 import ru.redcube.squadrating.services.work.WorkService;
 
@@ -20,22 +21,30 @@ public class UserToWorkController {
     private final WorkService<HardWork> hardWorkService;
     private final WorkService<SocialWork> socialWorkWorkService;
     private final SquadUserService squadUserService;
+    private final SecurityUserDetailsService securityUserDetailsService;
 
 
-    public UserToWorkController(UserToWorkService userToWorkService, WorkService<HardWork> hardWorkService, WorkService<SocialWork> socialWorkWorkService, SquadUserService squadUserService) {
+    public UserToWorkController(UserToWorkService userToWorkService,
+                                WorkService<HardWork> hardWorkService,
+                                WorkService<SocialWork> socialWorkWorkService,
+                                SquadUserService squadUserService,
+                                SecurityUserDetailsService securityUserDetailsService) {
         this.userToWorkService = userToWorkService;
         this.hardWorkService = hardWorkService;
         this.socialWorkWorkService = socialWorkWorkService;
         this.squadUserService = squadUserService;
+        this.securityUserDetailsService = securityUserDetailsService;
     }
 
     @GetMapping("/userToWorks")
     public String getUserToWorksPage(Model model) {
-        model.addAttribute("userToHardWork",userToWorkService.getUserToHardWorks());
-        model.addAttribute("userToSocialWork",userToWorkService.getUserToSocialWorks());
+        model.addAttribute("userToHardWork", userToWorkService.getUserToHardWorks());
+        model.addAttribute("userToSocialWork", userToWorkService.getUserToSocialWorks());
+        model.addAttribute("securityUserService", securityUserDetailsService);
 
         return "/user_to_works";
     }
+
     /**
      * Страница создания посещения производки
      *
@@ -46,7 +55,7 @@ public class UserToWorkController {
     public String createUserToHardWork(Model model) {
         //TODO добавить пользователя который создает работу
         model.addAttribute("userToHardWork", new UserToHardWork());
-        model.addAttribute("works",hardWorkService.getAllWorks());
+        model.addAttribute("works", hardWorkService.getAllWorks());
         model.addAttribute("appUsers", squadUserService.getAllUsers());
         return "/userToHardWork/add";
     }
@@ -57,7 +66,7 @@ public class UserToWorkController {
      * @return Переход на страницу с посещениями
      */
     @PostMapping("/userToHardWork/create")
-    public String createUserToHardWork(UserToHardWork userToHardWork){
+    public String createUserToHardWork(UserToHardWork userToHardWork) {
         userToWorkService.saveUserToHardWork(userToHardWork);
 
         return "redirect:/userToWorks";
@@ -73,7 +82,7 @@ public class UserToWorkController {
     public String createUserToSocialWork(Model model) {
         //TODO добавить пользователя который создает работу
         model.addAttribute("userToSocialWork", new UserToSocialWork());
-        model.addAttribute("works",socialWorkWorkService.getAllWorks());
+        model.addAttribute("works", socialWorkWorkService.getAllWorks());
         model.addAttribute("appUsers", squadUserService.getAllUsers());
 
         return "/userToSocialWork/add";
@@ -85,7 +94,7 @@ public class UserToWorkController {
      * @return Переход на страницу с посещениями
      */
     @PostMapping("/userToSocialWork/create")
-    public String createUserToSocialWork(UserToSocialWork userToSocialWork){
+    public String createUserToSocialWork(UserToSocialWork userToSocialWork) {
 
         userToWorkService.saveUserToSocialWork(userToSocialWork);
 
@@ -98,7 +107,7 @@ public class UserToWorkController {
         if (userToHardWorkOptional.isPresent()) {
             UserToHardWork userToHardWork = userToHardWorkOptional.get();
             model.addAttribute("userToHardWork", userToHardWork);
-            model.addAttribute("works",hardWorkService.getAllWorks());
+            model.addAttribute("works", hardWorkService.getAllWorks());
             model.addAttribute("appUsers", squadUserService.getAllUsers());
         } else {
             return "/error/page";
@@ -110,7 +119,7 @@ public class UserToWorkController {
     @PostMapping("/userToHardWork/{id}/update")
     public String updateUserToHardWork(@PathVariable("id") Long userToHardWorkId, UserToHardWork userToHardWork) {
         //TODO добавить обработку ошибок
-        userToWorkService.updateUserToHardWork(userToHardWork,userToHardWorkId);
+        userToWorkService.updateUserToHardWork(userToHardWork, userToHardWorkId);
         return "redirect:/userToWorks";
     }
 
@@ -132,7 +141,7 @@ public class UserToWorkController {
         if (userToSocialWorkOptional.isPresent()) {
             UserToSocialWork userToSocialWork = userToSocialWorkOptional.get();
             model.addAttribute("userToSocialWork", userToSocialWork);
-            model.addAttribute("works",hardWorkService.getAllWorks());
+            model.addAttribute("works", hardWorkService.getAllWorks());
             model.addAttribute("appUsers", squadUserService.getAllUsers());
         } else {
             return "/error/page";
@@ -144,7 +153,7 @@ public class UserToWorkController {
     @PostMapping("/userToSocialWork/{id}/update")
     public String updateUserToSocialWork(@PathVariable("id") Long userToSocialWorkId, UserToSocialWork userToSocialWork) {
         //TODO добавить обработку ошибок
-        userToWorkService.updateUserToSocialWork(userToSocialWork,userToSocialWorkId);
+        userToWorkService.updateUserToSocialWork(userToSocialWork, userToSocialWorkId);
         return "redirect:/userToWorks";
     }
 

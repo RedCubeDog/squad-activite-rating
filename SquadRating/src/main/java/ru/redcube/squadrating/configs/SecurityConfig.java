@@ -31,7 +31,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                 .requestMatchers("/registration", "/login", "/")
                 .permitAll()
-                .requestMatchers("/mainPage/**", "/squadWorks/**")
+                .requestMatchers("/mainPage", "/squadWorks", "/userToWorks")
                 .hasAnyAuthority("ROLE_BASIC_STATE", "ROLE_ADMINISTRATION_STATE")
                 .requestMatchers("/**")
                 .hasAnyAuthority("ROLE_ADMINISTRATION_STATE")

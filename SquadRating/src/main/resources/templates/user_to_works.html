@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="UTF-8">
     <title>Отработки</title>
@@ -39,7 +40,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="work : ${userToSocialWork}">
+                <tr sec:authorize="hasRole('ROLE_ADMINISTRATION_STATE')"
+                    th:each="work : ${userToSocialWork}">
                     <td th:text="${work.id}"></td>
                     <td th:text="${work.getWork().getTitle()}"></td>
                     <td th:text="${work.getWork().getCoefficient()}"></td>
@@ -52,6 +54,26 @@
                     <td><a th:href="@{/userToSocialWork/{id}/update(id=${work.id})}">Edit</a></td>
                     <td><a th:href="@{/userToSocialWork/{id}/delete(id=${work.id})}">Delete</a></td>
                 </tr>
+                <div sec:authorize="hasRole('ROLE_BASIC_STATE')
+                            && !hasRole('ROLE_ADMINISTRATION_STATE')"
+                     th:with="username=${#authentication.name}">
+                    <tr th:each="work : ${userToSocialWork}"
+                        th:if="${work.user.securityUser.id == securityUserService
+                    .getSecurityUser(username).id}">
+                        <td th:text="${work.id}"></td>
+                        <td th:text="${work.getWork().getTitle()}"></td>
+                        <td th:text="${work.getWork().getCoefficient()}"></td>
+                        <td th:text="${work.getWork().getDate()}"></td>
+                        <td th:text="${work.getFormattedTimeWork()}"></td>
+                        <td th:text="${work.getWork().getDescription()}"></td>
+                        <td th:text="${work.getUser().getFirstName()}"></td>
+                        <td th:text="${work.getUser().getLastName()}"></td>
+                        <td th:text="${work.getUser().getPatronymic()}"></td>
+                        <td><a th:href="@{/userToSocialWork/{id}/update(id=${work.id})}">Edit</a></td>
+                        <td><a th:href="@{/userToSocialWork/{id}/delete(id=${work.id})}">Delete</a></td>
+
+                    </tr>
+                </div>
                 </tbody>
             </table>
         </td>
@@ -78,7 +100,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="work : ${userToHardWork}">
+                <tr sec:authorize="hasRole('ROLE_ADMINISTRATION_STATE')"
+                    th:each="work : ${userToHardWork}">
                     <td th:text="${work.id}"></td>
                     <td th:text="${work.getWork().getTitle()}"></td>
                     <td th:text="${work.getWork().getCoefficient()}"></td>
@@ -91,6 +114,25 @@
                     <td><a th:href="@{/userToHardWork/{id}/update(id=${work.id})}">Edit</a></td>
                     <td><a th:href="@{/userToHardWork/{id}/delete(id=${work.id})}">Delete</a></td>
                 </tr>
+                <div sec:authorize="hasRole('ROLE_BASIC_STATE')
+                            && !hasRole('ROLE_ADMINISTRATION_STATE')"
+                     th:with="username=${#authentication.name}">
+                    <tr th:each="work : ${userToHardWork}"
+                        th:if="${work.user.securityUser.id == securityUserService
+                    .getSecurityUser(username).id}">
+                        <td th:text="${work.id}"></td>
+                        <td th:text="${work.getWork().getTitle()}"></td>
+                        <td th:text="${work.getWork().getCoefficient()}"></td>
+                        <td th:text="${work.getWork().getDate()}"></td>
+                        <td th:text="${work.getFormattedTimeWork()}"></td>
+                        <td th:text="${work.getWork().getDescription()}"></td>
+                        <td th:text="${work.getUser().getFirstName()}"></td>
+                        <td th:text="${work.getUser().getLastName()}"></td>
+                        <td th:text="${work.getUser().getPatronymic()}"></td>
+                        <td><a th:href="@{/userToHardWork/{id}/update(id=${work.id})}">Edit</a></td>
+                        <td><a th:href="@{/userToHardWork/{id}/delete(id=${work.id})}">Delete</a></td>
+                    </tr>
+                </div>
                 </tbody>
             </table>
         </td>
