@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="userToWorksDataFragment(work)">
+    <td th:text="${work.id}"></td>
+    <td th:text="${work.getWork().getTitle()}"></td>
+    <td th:text="${work.getWork().getCoefficient()}"></td>
+    <td th:text="${work.getWork().getDate()}"></td>
+    <td th:text="${work.getFormattedTimeWork()}"></td>
+    <td th:text="${work.getWork().getDescription()}"></td>
+    <td th:text="${work.getUser().getFirstName()}"></td>
+    <td th:text="${work.getUser().getLastName()}"></td>
+    <td th:text="${work.getUser().getPatronymic()}"></td>
+</div>
+</body>
+</html>

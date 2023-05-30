@@ -6,6 +6,7 @@ import ru.redcube.squadrating.repositories.squad.SquadRepository;
 import ru.redcube.squadrating.entity.squad.SquadImpl;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SquadService {
@@ -19,5 +20,9 @@ public class SquadService {
 
     public List<SquadImpl> getSquads() {
         return squadRepository.findAll();
+    }
+
+    public Optional<SquadImpl> getSquadById(Long id) {
+        return squadRepository.findById(id);
     }
 }

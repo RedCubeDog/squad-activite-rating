@@ -2,9 +2,9 @@ package ru.redcube.squadrating.entity.links;
 
 import jakarta.persistence.*;
 import lombok.*;
+import ru.redcube.squadrating.entity.converters.DurationAttributeConverter;
 
-import java.sql.Time;
-import java.time.LocalDateTime;
+import java.time.Duration;
 
 @Getter
 @Setter
@@ -18,5 +18,14 @@ public abstract class UserToWork {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDateTime timeOfWork;
+    @Convert(converter = DurationAttributeConverter.class)
+    @Column(name = "time_work")
+    private Duration timeOfWork;
+
+    @Transient
+    private String timeOfWorkString;
+
+    public String getFormattedTimeWork() {
+        return DurationAttributeConverter.getFormattedTimeWork(timeOfWork);
+    }
 }

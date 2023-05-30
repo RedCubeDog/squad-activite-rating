@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="https://thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Spring Security</title>
@@ -9,9 +8,19 @@
 <div th:if="${message}">
     <div th:text="${message}"></div>
 </div>
-<form th:action="@{/registration}" method="post">
-    <div><label> User Name : <input type="text" name="username"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
+<form th:action="@{/registration}" method="post" th:object="${registrationForm}">
+    <div><label> Логин : <input type="text" name="логин"
+                                th:field="*{securityUser.username}"/> </label></div>
+    <div><label> Пароль: <input type="password" name="пароль"
+                                th:field="*{securityUser.password}"/> </label></div>
+    <div><label> Имя: <input type="text" name="имя"
+                                th:field="*{squadUser.firstName}"/> </label></div>
+    <div><label> Фамилия: <input type="text" name="фамилия"
+                                 th:field="*{squadUser.lastName}"/> </label></div>
+    <div><label> Отчество: <input type="text" name="отчество"
+                                  th:field="*{squadUser.patronymic}"/> </label></div>
+    <div><label> Почта: <input type="text" name="почта"
+                               th:field="*{squadUser.email}"/> </label></div>
     <div><input type="submit" value="Зарегистрироваться"/></div>
 </form>
 <a th:href="@{/}">Вернуться на страницу регистрации</a>

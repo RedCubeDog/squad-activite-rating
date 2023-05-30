@@ -3,6 +3,7 @@ package ru.redcube.squadrating.services.links;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.redcube.squadrating.entity.converters.DurationAttributeConverter;
 import ru.redcube.squadrating.entity.links.UserToHardWork;
 import ru.redcube.squadrating.entity.links.UserToSocialWork;
 import ru.redcube.squadrating.repositories.links.UserToHardWorkDAO;
@@ -42,6 +43,8 @@ public class UserToWorkService {
 
     @Transactional
     public void saveUserToHardWork(UserToHardWork userToHardWork) {
+        userToHardWork.setTimeOfWork(new DurationAttributeConverter()
+                .convertToEntityAttribute(userToHardWork.getTimeOfWorkString()));
         userToHardWorkDAO.save(userToHardWork);
     }
 
@@ -57,6 +60,8 @@ public class UserToWorkService {
 
     @Transactional
     public void saveUserToSocialWork(UserToSocialWork userToSocialWork) {
+        userToSocialWork.setTimeOfWork(new DurationAttributeConverter()
+                .convertToEntityAttribute(userToSocialWork.getTimeOfWorkString()));
         userToSocialWorkDAO.save(userToSocialWork);
     }
 
@@ -64,7 +69,10 @@ public class UserToWorkService {
     public void updateUserToHardWork(UserToHardWork userToHardWork, Long id) {
         Optional<UserToHardWork> userToHardWorkOptional = userToHardWorkDAO.findById(id);
 
+
         if (userToHardWorkOptional.isPresent()) {
+            userToHardWork.setTimeOfWork(new DurationAttributeConverter()
+                    .convertToEntityAttribute(userToHardWork.getTimeOfWorkString()));
             UserToHardWork userToHardWorkEntity = userToHardWorkOptional.get();
             userToHardWorkEntity.setWork(userToHardWork.getWork());
             userToHardWorkEntity.setTimeOfWork(userToHardWork.getTimeOfWork());
@@ -77,6 +85,8 @@ public class UserToWorkService {
         Optional<UserToSocialWork> userToSocialWorkOptional = userToSocialWorkDAO.findById(id);
 
         if (userToSocialWorkOptional.isPresent()) {
+            userToSocialWork.setTimeOfWork(new DurationAttributeConverter()
+                    .convertToEntityAttribute(userToSocialWork.getTimeOfWorkString()));
             UserToSocialWork userToSocialWorkEntity = userToSocialWorkOptional.get();
             userToSocialWorkEntity.setWork(userToSocialWork.getWork());
             userToSocialWorkEntity.setTimeOfWork(userToSocialWork.getTimeOfWork());

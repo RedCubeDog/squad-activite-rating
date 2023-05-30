@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <title>Отработки отрядов</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%
+        }
+
+        th, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <table>
+                <caption>Посещение отработок отрядами</caption>
+                <thead>
+                <tr>
+                    <td>Имя отряда</td>
+                    <td>Суммарное время производственных отработок</td>
+                    <td>Суммарное время социальных отработок</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr sec:authorize="hasRole('ROLE_ADMINISTRATION_STATE')"
+                    th:each="squadAndHours : ${squadsAndHours}">
+                    <div th:replace="~{fragments/squad_and_hours_data_fragment
+                    :: squadAndHoursDataFragment(${squadAndHours})}"></div>
+                </tr>
+                <div sec:authorize="hasRole('ROLE_BASIC_STATE')
+                        && !hasRole('ROLE_ADMINISTRATION_STATE')"
+                     th:with="username=${#authentication.name}">
+                    <tr th:each="squadAndHours : ${squadsAndHours}"
+                        th:if="${squadAndHours.getSquadName() != null
+                        && securityUserService
+                    .getSecurityUser(username)
+                    .squadUser.squadId != null
+                        && #strings.equals(squadAndHours.getSquadName().toString(),
+                    securityUserService
+                    .getSecurityUser(username)
+                    .squadUser.squadId.name.toString())}">
+                        <div th:replace="~{fragments/squad_and_hours_data_fragment
+                        :: squadAndHoursDataFragment(${squadAndHours})}"></div>
+                    </tr>
+                </div>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+<a th:href="@{/mainPage}">Вернуться на главную страницу.</a>
+</html>

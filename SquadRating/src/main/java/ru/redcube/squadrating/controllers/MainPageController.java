@@ -8,11 +8,11 @@ public class MainPageController {
 
     @GetMapping("/")
     public String getLoginOrRegistration() {
-        return "/loginOrRegistration";
+        return "index";
     }
 
     @GetMapping("/mainPage")
     public String getMainPage() {
-        return "/index";
+        return "main-page";
     }
 }
