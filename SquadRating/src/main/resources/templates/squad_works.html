@@ -32,9 +32,8 @@
                 <tbody>
                 <tr sec:authorize="hasRole('ROLE_ADMINISTRATION_STATE')"
                     th:each="squadAndHours : ${squadsAndHours}">
-                    <td th:text="${squadAndHours.getSquadName()}"></td>
-                    <td th:text="${squadAndHours.getFormattedHardTimeWork()}"></td>
-                    <td th:text="${squadAndHours.getFormattedSocialTimeWork()}"></td>
+                    <div th:replace="~{fragments/squad_and_hours_data_fragment
+                    :: squadAndHoursDataFragment(${squadAndHours})}"></div>
                 </tr>
                 <div sec:authorize="hasRole('ROLE_BASIC_STATE')
                         && !hasRole('ROLE_ADMINISTRATION_STATE')"
@@ -45,9 +44,8 @@
                     securityUserService
                     .getSecurityUser(username)
                     .squadUser.squadId.name.toString())}">
-                        <td th:text="${squadAndHours.getSquadName()}"></td>
-                        <td th:text="${squadAndHours.getFormattedHardTimeWork()}"></td>
-                        <td th:text="${squadAndHours.getFormattedSocialTimeWork()}"></td>
+                        <div th:replace="~{fragments/squad_and_hours_data_fragment
+                        :: squadAndHoursDataFragment(${squadAndHours})}"></div>
                     </tr>
                 </div>
                 </tbody>
