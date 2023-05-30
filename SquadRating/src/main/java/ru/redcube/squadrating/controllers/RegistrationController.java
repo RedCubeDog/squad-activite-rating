@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.redcube.squadrating.entity.dto.RegistrationFormDTO;
 import ru.redcube.squadrating.entity.security.SecurityUser;
+import ru.redcube.squadrating.entity.squadUser.SquadRole;
 import ru.redcube.squadrating.entity.squadUser.SquadUser;
 import ru.redcube.squadrating.services.security.SecurityUserDetailsService;
 
@@ -36,6 +37,7 @@ public class RegistrationController {
             SquadUser squadUser = registrationForm.getSquadUser();
             securityUser.setSquadUser(squadUser);
             squadUser.setSecurityUser(securityUser);
+            squadUser.setSquadRole(SquadRole.CANDIDATE);
             securityUserDetailsService.addUser(securityUser);
             return "redirect:/";
         } catch (Exception ex) {

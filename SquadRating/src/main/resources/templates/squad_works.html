@@ -39,8 +39,11 @@
                         && !hasRole('ROLE_ADMINISTRATION_STATE')"
                      th:with="username=${#authentication.name}">
                     <tr th:each="squadAndHours : ${squadsAndHours}"
-                        th:if="${#strings
-                    .equals(squadAndHours.getSquadName().toString(),
+                        th:if="${squadAndHours.getSquadName() != null
+                        && securityUserService
+                    .getSecurityUser(username)
+                    .squadUser.squadId != null
+                        && #strings.equals(squadAndHours.getSquadName().toString(),
                     securityUserService
                     .getSecurityUser(username)
                     .squadUser.squadId.name.toString())}">
